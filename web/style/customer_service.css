@@ -1,0 +1,341 @@
+@font-face {
+      font-family: 'icomoon';
+      src: url('fonts/icomoon.eot?mmmx34');
+      src: url('fonts/icomoon.eot?mmmx34#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?mmmx34') format('truetype'),
+        url('fonts/icomoon.woff?mmmx34') format('woff'),
+        url('fonts/icomoon.svg?mmmx34#icomoon') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 8px;
+      background-color: #202531;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      border: 6px solid rgba(0, 0, 0, 0);
+      box-shadow: 8px 0 0 #434953 inset;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      box-shadow: 8px 0 0 rgb(74, 74, 74) inset;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: rgb(27, 40, 56);
+       /* 加载背景图 */
+      background-image: url(../image/bg/blue_body_repeat.jpg);
+      /* 背景图垂直、水平均居中 */
+      background-position: center center;
+      /* 背景图不平铺 */
+      background-repeat: no-repeat;
+      /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+      background-attachment: fixed;
+      /* 让背景图基于容器大小伸缩 */
+      background-size: cover;
+      /* 设置背景颜色，背景图加载过程中会显示背景色 */
+      background-color: #464646;
+    }
+
+    .responsive_header li {
+      display: inline-block;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(220, 222, 223);
+    }
+
+    input {
+      outline: none;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+
+    textarea{
+      padding-top: 10px;
+			pointer-events: none;
+      background-color: transparent;
+      overflow: hidden;
+      border:none;
+      outline:none;
+      resize:none;
+      width: 90%;
+      height: 200px;
+      color: rgb(99,99,99);
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .clearfix:after,.clearfix:before{
+        content: "";
+        display: block;
+    }
+    .clearfix:after{
+        clear: both;
+    }
+
+    .font_download {
+      font-family: 'icomoon';
+    }
+
+    .responsive_header {
+      background-color: rgb(23, 29, 37);
+      width: 100%;
+      height: 123px;
+    }
+
+    .responsive_header .active {
+      color: rgb(26, 159, 255);
+      border-bottom: 5px solid rgb(26, 159, 255);
+      font-size: 20px;
+    }
+
+    .nav .p {
+      display: inline-block;
+      inline-size: none;
+    }
+
+    .header_conten .header_logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .responsive_header .header_conten {
+      background-color: rgb(23, 29, 37);
+      width: 1247px;
+      height: 123px;
+      margin: 0px auto;
+      padding: 0 100px;
+    }
+
+
+    .responsive_header .header_conten .header_logo {
+      float: left;
+      width: 216px;
+      height: 60px;
+      margin-top: 38px;
+      background-color: transparent;
+    }
+
+    .nav ul li {
+      padding-left: 16px;
+      text-align: center;
+    }
+
+    .responsive_header .nav {
+      float: left;
+      width: 218px;
+      height: 29px;
+      margin-top: 59px;
+      margin-left: 50px;
+      text-align: center;
+      font-size: 15px;
+      background-color: transparent;
+    }
+
+    .responsive_header .nav a {
+      color: rgb(220, 222, 223);
+    }
+
+    .header_conten .globle_action_meau {
+      float: right;
+      padding-top: 0px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: rgb(202, 199, 196);
+    }
+
+    .header_conten .header_install {
+      width: 114px;
+      height: 30px;
+      line-height: 31px;
+      background-color: rgb(92, 126, 16);
+    }
+
+    .responsive_header .header_conten .header_install span {
+      display: inline-block;
+      left: 50%-36px;
+      top: 50%-25px;
+      margin-right: 2px;
+    }
+
+    .main_conten{
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .title h1{
+      color: #fff;
+      font-weight: 300;
+      font-size: 25px;
+      margin: 20px 0;
+    }
+
+    .title h2{
+      color: rgb(94, 175, 222);
+      font-weight: 300;
+      font-size: 22px;
+    }
+
+    .Hot_Products h2{
+      color: rgb(94, 175, 222);
+      font-weight: 400;
+      font-size: 15px;
+      margin: 15px 0;
+    }
+
+    .show_blank {
+      width: 80%;
+      background-color: rgb(68, 84, 104);
+      text-align: left;
+    }
+
+    .show_blank .Introductory_picture{
+      display: inline-block;
+      padding: 4px;
+      height: 100%;
+      width: 6%;
+      vertical-align: middle;
+    }
+    .Introductory_picture img{
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    .show_blank{
+      position: relative;
+      margin: 13px 0;
+    }
+
+    .show_blank:hover{
+      background-color: rgb(69, 129, 165);
+      cursor: pointer;
+    }
+
+    .show_blank .game_name{
+      display: inline-block;
+    }
+
+    .show_blank span{
+      color: #fff;
+      padding-top: 10px;
+    }
+
+    .show_blank .arrow_right{
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      margin-top: -13px;
+      width:0;
+      height:0;
+      border-top:13px solid transparent;
+      border-bottom:13px solid transparent;
+      border-left:13px solid rgb(160, 179, 203);
+    }
+
+    .dividing_the_line{
+      width: 80%;
+      border-top:1px solid rgb(59, 113, 141) ;
+      border-bottom:1px solid rgb(59, 113, 141) ;
+    }
+
+
+    .srecial_service .show_blank,
+    .dividing_the_line .show_blank{
+      width: 100%;
+    }
+
+    .srecial_service .show_blank,
+    .other_service .show_blank{
+      padding-left: 10px;
+      padding-bottom: 20px;
+      padding-top: 10px;
+    }
+
+    .srecial_service{
+      width: 80%;
+      border-top:2px solid rgb(69, 129, 165);
+    }
+
+    .search_box{
+      margin: 50px 0;
+      width: 80%;
+    }
+    .search_box input{
+      width: 100%;
+      height: 60px;
+      background-color: rgb(50, 73, 101);
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+      border-radius: 0;
+      padding-left: 30%;
+      font-size: 25px;
+      font-style:italic;
+    }
+
+    .search_box input:focus {
+      outline:1px solid #fff;
+      border-radius: 1px;
+    }
+
+    .footer{
+      width: 100%;
+      background-color: rgb(23, 29, 37);
+    }
+    
+    .footer .main_conten{
+      width: 1000px;
+      margin: 0 auto;
+      margin-top: 100px;
+      height: 100px;
+      padding: 10px;
+    }
+    
+    .footer  .bottom_text,
+    .footer .top_text{
+      padding: 10px;
+      border-top: 1px solid rgb(54, 60, 68);
+      border-bottom: 1px solid rgb(54, 60, 68);
+      color: rgb(158, 168, 181);
+      padding-bottom: 3px;
+    }
+
+    span a{
+      color: rgb(158, 168, 181);
+    }
+
+    span a:hover{
+      color: rgb(240, 241, 241);
+    }

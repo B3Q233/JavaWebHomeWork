@@ -1,0 +1,709 @@
+@font-face {
+      font-family: 'icomoon';
+      src: url('fonts/icomoon.eot?mmmx34');
+      src: url('fonts/icomoon.eot?mmmx34#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?mmmx34') format('truetype'),
+        url('fonts/icomoon.woff?mmmx34') format('woff'),
+        url('fonts/icomoon.svg?mmmx34#icomoon') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 8px;
+      background-color: #202531;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      border: 6px solid rgba(0, 0, 0, 0);
+      box-shadow: 8px 0 0 #434953 inset;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      box-shadow: 8px 0 0 rgb(74, 74, 74) inset;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: rgb(27, 40, 56);
+       /* 加载背景图 */
+    background-image: url(../image/bg/community_bg.jpg);
+    /* 背景图垂直、水平均居中 */
+    background-position: center center;
+    /* 背景图不平铺 */
+    background-repeat: no-repeat;
+    /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+    background-attachment: fixed;
+    /* 让背景图基于容器大小伸缩 */
+    background-size: cover;
+    /* 设置背景颜色，背景图加载过程中会显示背景色 */
+    background-color: #464646;
+    }
+
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(220, 222, 223);
+    }
+
+    input {
+      outline: none;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+
+    textarea{
+      padding-top: 10px;
+			pointer-events: none;
+      background-color: transparent;
+      overflow: hidden;
+      border:none;
+      outline:none;
+      resize:none;
+      width: 90%;
+      height: 200px;
+      color: rgb(99,99,99);
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .clearfix:after,.clearfix:before{
+        content: "";
+        display: block;
+    }
+    .clearfix:after{
+        clear: both;
+    }
+
+    .font_download {
+      font-family: 'icomoon';
+    }
+
+
+    .responsive_header {
+      background-color: rgb(23, 29, 37);
+      width: 100%;
+      height: 123px;
+    }
+
+    .responsive_header .active {
+      color: rgb(26, 159, 255);
+      border-bottom: 5px solid rgb(26, 159, 255);
+      font-size: 20px;
+    }
+
+    .nav .p {
+      display: inline-block;
+      inline-size: none;
+    }
+
+    .header_conten .header_logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .responsive_header .header_conten {
+      background-color: rgb(23, 29, 37);
+      width: 1247px;
+      height: 123px;
+      margin: 0px auto;
+      padding: 0 100px;
+    }
+
+
+    .responsive_header .header_conten .header_logo {
+      float: left;
+      width: 216px;
+      height: 60px;
+      margin-top: 38px;
+      background-color: transparent;
+    }
+
+    .nav ul li {
+      padding-left: 16px;
+      text-align: center;
+    }
+
+    .responsive_header .nav {
+      float: left;
+      width: 218px;
+      height: 29px;
+      margin-top: 59px;
+      margin-left: 50px;
+      text-align: center;
+      font-size: 15px;
+      background-color: transparent;
+    }
+
+    .responsive_header .nav a {
+      color: rgb(220, 222, 223);
+    }
+
+    .header_conten .globle_action_meau {
+      float: right;
+      padding-top: 0px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: rgb(202, 199, 196);
+    }
+
+    .header_conten .header_install {
+      width: 114px;
+      height: 30px;
+      line-height: 31px;
+      background-color: rgb(92, 126, 16);
+    }
+
+    .responsive_header .header_conten .header_install span {
+      display: inline-block;
+      left: 50%-36px;
+      top: 50%-25px;
+      margin-right: 2px;
+    }
+
+    .user_relative{
+      width: 1000px;
+      margin: 50px auto;
+      line-height: 40px;
+    }
+
+    .user_relative h1{
+      color: #fff;
+      font-weight: 500;
+    }
+    .user_relative h4{
+      color: rgb(144, 153, 161);
+      font-weight: 400;
+    }
+
+    .user_relative ul li{
+      display: block;
+    }
+
+    .user_relative .user_recent_play{
+      float: left;
+      width: 596px;
+      height: 275px;
+      background-color: rgba(17, 33, 49,0.8);
+    }
+
+    .detail a:hover{
+      text-decoration: underline;
+    }
+
+     .user_relative .user_recent_play div{
+      display: inline-block;
+    }
+
+    .user_relative h5{
+      font-weight: 400;
+      color: rgb(126, 135, 143);
+    }
+
+    .user_relative .user_recent_play .recent_palyed_game{
+      padding-left: 10px;
+      float: left;
+      height: 100%;
+      width: 295px;
+      margin-right: 5px;
+    }
+
+     .user_relative .user_recent_play .recent_palyed_game .detail{
+     margin-left: 5px;
+    } 
+
+     .user_relative .user_recent_play .recent_look_community{
+      padding-left: 10px;
+      float: left;
+      height: 100%;
+      width: 295px; 
+      background-color: rgba(17, 33, 49,0.0);
+    }
+
+    .user_relative .search{
+      float: right;
+      width: 392px;
+      height: 275px;
+      background-color: rgba(17, 33, 49,0.8);
+    }
+
+    .search_center,
+    .search_people{
+      padding-left: 20px;
+      height: 50%;
+    }
+
+    .search_center{
+      border-bottom: 1px solid #000;
+    }
+
+    .search_people{
+      border-top: 1px solid rgb(51, 51, 51);
+    }
+
+    .seach_box{
+      position: relative;
+    }
+
+    .seach_box input{
+      width: 320px;
+      height: 43px;
+      background-color: rgb(42, 63, 90);
+      box-shadow: 1px 1px 1px rgb(69, 85, 108);
+      padding-left: 20px;
+      font-size: 17px;
+      font-weight: 600;
+      color: rgb(126, 135, 143);
+      border-color: #000;
+    }
+
+     .seach_box input[type=text]::placeholder{
+      color: rgb(138, 138, 142);
+      font-weight: 600;
+      font-size: 17px;
+      font-style:italic;
+     }
+
+     .seach_box button{
+      position: absolute;
+      top:7px;
+      color: rgb(183, 185, 186);
+      right: 60px;
+      width: 30px;
+      height: 30px;
+      background-color: rgb(42,63,90);
+      border: 1px solid transparent;
+     } 
+
+     .main_comment{
+      width: 1000px;
+      margin: 0 auto;
+     }
+
+    .main_comment a:hover{
+      border: 1px solid rgb(47, 137, 188);
+      margin-bottom: -100px;
+    }
+
+     a:hover .comment_game{
+     background-color: rgb(33, 47, 67);
+    }
+
+     .main_comment .comment_box{
+      padding-top: 20px;
+      padding-left: 20px;
+      width: 496px;
+      color: rgb(99, 99, 99);
+      display: inline-block;
+      background-color: rgb(13, 19, 27);
+     }
+
+     .comment_box .comment_icon{
+      width: 25px;
+      height: 25px;
+      line-height: 20px;
+     }
+
+     .comment_box .number_of_people_to_think{
+      padding-top: 10px;
+      padding-bottom: 10px;
+     }
+
+     .comment_box .comment_icon{
+      display: inline-block;
+      text-align: center;
+     }
+
+
+     .comment_box .comment_icon {
+      vertical-align: middle;
+      margin-right: -5px;
+     }
+
+    .comment_conten span{
+      display: inline-block;
+      color: rgb(93, 191, 248);
+    }
+
+    .commenter_hours div{
+      width: 68px;
+      height: 68px;
+      display: inline-block;
+    }
+
+    .commenter_hours img{
+      margin-bottom: -2px;
+    }
+
+    .comment_conten .content{
+      background-color: transparent;
+    }
+
+    .commenter_hours .top{
+      margin-bottom: -34px;
+      font-size: 20px;
+      font-weight: 600;
+      color: rgb(202, 203, 204);
+    }
+
+    .commenter_hours .bottom{
+      width: 300%;
+      color: rgb(202, 203, 204);
+    }
+
+    .comment_game{
+      border-top: 1px solid rgb(39, 47, 56);
+      margin-left: -18px;
+    }
+
+    .comment_game *{
+      margin-left: 18px;
+    }
+
+    .comment_game .game_name{
+      display: inline-block;
+      line-height: 70px;
+      font-size: 20px;
+    }
+
+    .comment_game .number_of_discussion{
+      float: right;
+      vertical-align: middle;
+      position: relative;
+    }
+
+    .comment_game .number_of_discussion img {
+      position: absolute;
+      right: 55px;
+      top: 45% ;
+    }
+
+    .comment_game .number_of_discussion span{
+      float: right;
+      padding-top: 45%;
+      padding-right: 10px;
+    }
+
+    .game_guide a:hover{
+      border: 1px solid rgb(47, 137, 188);
+      margin-bottom: -10px;
+    }
+
+    .game_guide{
+      width: 1000px;
+      margin: 50px auto;
+      margin-bottom: 50px;
+    }
+
+    .game_guide .comment_box{
+      padding-top: 20px;
+      padding-left: 20px;
+      width: 496px;
+      color: rgb(99, 99, 99);
+      display: inline-block;
+      background-color: rgb(13, 19, 27);
+     }
+
+     .comment_box .Specifics{
+      padding-top: 5%;
+      font-size: 19px;
+      width: 92%;
+     }
+
+     .comment_conten h1{
+      color: #fff;
+     }
+
+     .comment_conten .simple_introduction{
+      position: relative;
+      width: 98%;
+      height: 100px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background-color: rgb(39, 47, 56);
+     }
+     
+     
+     .simple_introduction .introduct_img{
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      top: 50%;
+      margin-top: -40px;
+      left: 20px;
+     }
+
+    .simple_introduction .detail_text{
+     position: absolute;
+     width: 77%;
+     left: 23%;
+     top: 32%;
+     margin-top: -32px;
+     font-size: 18px;
+     color: #fff;
+    } 
+
+    .comment_box .evalution{
+      position: relative;
+    }
+
+    .comment_box .evalution .evalute_starts{
+      position: relative;
+      float: left;
+      left: -13px;
+      bottom: 20px;
+      width: 25%; 
+    }
+
+    .comment_box .evalution .number_of_discussion img{
+      float: right;
+      position: absolute;
+      right: 56px;
+      top: -19px;
+    }
+
+    .comment_box .evalution .number_of_discussion span{
+      float: right;
+      position: absolute;
+      right: 10px;
+      top: -17px;
+      color: rgb(126, 135, 143);
+    }
+
+
+     .game_guide_more_1 a:hover{
+      margin-bottom: -10px;
+    }
+    .game_guide_more_1 a:hover .comment_box{
+      border: 1px solid rgb(47, 137, 188);
+    }
+
+    .game_guide_more_1{
+      width: 1000px;
+      margin: 50px auto;
+    }
+
+    .game_guide_more_1 .comment_box{
+      padding-top: 20px;
+      padding-left: 20px;
+      width: 330px;
+      color: rgb(99, 99, 99);
+      display: inline-block;
+      background-color: rgb(13, 19, 27);
+     }
+
+    .game_guide_more_1 .comment_box .Specifics{
+      padding-top: 5%;
+      font-size: 19px;
+      width: 92%;
+     }
+
+     .comment_conten h1{
+      color: #fff;
+      font-size: 25px;
+     }
+
+     .game_guide_more_1 .comment_conten .simple_introduction{
+      position: relative;
+      width: 98%;
+      height: 100px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background-color: rgb(39, 47, 56);
+     }
+     
+     
+     .game_guide_more_1 .simple_introduction .introduct_img{
+      position: absolute;
+      width: 85px;
+      height: 80px;
+      top: 50%;
+      margin-top: -40px;
+      left: 20px;
+     }
+
+    .game_guide_more_1 .simple_introduction .detail_text{
+     position: absolute;
+     width: 65%;
+     left: 37%;
+     top: 32%;
+     margin-top: -32px;
+     font-size: 17px;
+     color: #fff;
+    } 
+
+    
+
+    .comment_box .evalution{
+      position: relative;
+    }
+
+    .comment_box .evalution .evalute_starts{
+      position: relative;
+      float: left;
+      left: -13px;
+      bottom: 20px;
+      width: 25%; 
+    }
+
+    .comment_box .evalution .number_of_discussion img{
+      float: right;
+      position: absolute;
+      right: 56px;
+      top: -19px;
+    }
+
+    .comment_box .evalution .number_of_discussion span{
+      float: right;
+      position: absolute;
+      right: 10px;
+      top: -17px;
+      color: rgb(126, 135, 143);
+    }
+
+
+    .end_bg{
+      position: relative;
+      width: 1000px;
+      margin: 50px auto;
+      background-color: rgb(13, 19, 27);
+    }
+
+    .end_bg h1{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -300px;
+      color: rgb(196, 196, 196);
+      font-size: 25px;
+    }
+     .end_bg h2{
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      margin-left: -150px;
+      color: rgb(215, 212, 212);
+      font-size: 20px;
+    }
+
+    .game_video{
+      width: 1000px;
+      margin: 50px auto;
+    }
+
+    .game_video .comment_box:hover{
+      margin-bottom: -1px;
+    }
+
+    .game_video .comment_box:hover {
+      border: 1px solid rgb(47, 137, 188);
+    }
+
+    .game_video .comment_box:hover .hidden_title{
+      display: block;
+    }
+
+    .game_video .comment_box{
+      position: relative;
+      width: 496px;
+      background-color: rgb(13, 19, 27);
+    }
+
+
+    .game_video img{
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+    }
+    .game_video .button_play{
+      position: absolute;
+      width: 25%;
+      height: 25%;
+      top: 28%;
+      left: 38%;
+    }
+
+    .game_video .comment_game{
+      color: rgb(99, 99, 99);
+      padding-left: 10px;
+    }
+
+    .game_video .introduct_img .hidden_title {
+      position: absolute;
+      display: none;
+      width: 96%;
+      padding: 10px;
+      background-color: rgba(27, 47, 65,0.95);
+      color: rgba(255, 255, 255);
+      top: 10px;
+      left: 10px;
+    }
+
+    .comment_box span{
+      padding-left: 10px;
+      margin-bottom: 10px;
+      color: rgb(99,99,99);
+    }
+
+     .footer{
+      width: 100%;
+      background-color: rgb(23, 29, 37);
+    }
+    
+    .footer .main_conten{
+      width: 1000px;
+      margin: 0 auto;
+      margin-top: 100px;
+      height: 100px;
+      padding: 10px;
+    }
+    
+    .footer  .bottom_text,
+    .footer .top_text{
+      padding: 10px;
+      border-top: 1px solid rgb(54, 60, 68);
+      border-bottom: 1px solid rgb(54, 60, 68);
+      color: rgb(158, 168, 181);
+      padding-bottom: 3px;
+    }
+
+    span a{
+      color: rgb(158, 168, 181);
+    }
+
+    span a:hover{
+      color: rgb(240, 241, 241);
+    }

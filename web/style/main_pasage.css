@@ -1,0 +1,610 @@
+ @font-face {
+      font-family: 'icomoon';
+      src: url('fonts/icomoon.eot?mmmx34');
+      src: url('fonts/icomoon.eot?mmmx34#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?mmmx34') format('truetype'),
+        url('fonts/icomoon.woff?mmmx34') format('woff'),
+        url('fonts/icomoon.svg?mmmx34#icomoon') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar {
+      width: 20px;
+      height: 8px;
+      background-color: #202531;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      border: 6px solid rgba(0, 0, 0, 0);
+      box-shadow: 8px 0 0 #434953 inset;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      box-shadow: 8px 0 0 rgb(74, 74, 74) inset;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      background: linear-gradient(to bottom, rgb(70, 111, 151), rgb(15, 33, 110));
+    }
+
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(220, 222, 223);
+    }
+
+    input {
+      outline: none;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+    }
+
+
+    .font_download {
+      font-family: 'icomoon';
+    }
+
+    .responsive_header {
+      background-color: rgb(23, 26, 23);
+      width: 100%;
+      height: 123px;
+    }
+
+    .responsive_header .active {
+      color: rgb(26, 159, 255);
+      border-bottom: 5px solid rgb(26, 159, 255);
+      font-size: 20px;
+    }
+
+    .nav .p {
+      display: inline-block;
+      inline-size: none;
+    }
+
+    .header_conten .header_logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .responsive_header .header_conten {
+      background-color: rgb(23, 26, 23);
+      width: 1300px;
+      height: 123px;
+      margin: 0px auto;
+      padding: 0 100px;
+    }
+
+
+    .responsive_header .header_conten .header_logo {
+      float: left;
+      width: 216px;
+      height: 60px;
+      margin-top: 38px;
+      background-color: transparent;
+    }
+
+    .nav ul li {
+      padding-left: 16px;
+      text-align: center;
+    }
+
+    .responsive_header .nav {
+      float: left;
+      width: 218px;
+      height: 29px;
+      margin-top: 59px;
+      margin-left: 50px;
+      text-align: center;
+      font-size: 15px;
+      background-color: transparent;
+    }
+
+    .responsive_header .nav a {
+      color: rgb(220, 222, 223);
+    }
+
+    .header_conten .globle_action_meau {
+      float: right;
+      padding-top: 0px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: rgb(202, 199, 196);
+    }
+
+    .header_conten .header_install {
+      width: 114px;
+      height: 30px;
+      line-height: 31px;
+      background-color: rgb(92, 126, 16);
+    }
+
+    .responsive_header .header_conten .header_install span {
+      display: inline-block;
+      left: 50%-36px;
+      top: 50%-25px;
+      margin-right: 2px;
+    }
+
+    .main_bg {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .main_bg img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .main_bg .store_nav {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      width: 1300px;
+      height: 50px;
+      margin-left: -650px;
+      background: linear-gradient(to right, rgb(70, 111, 151), rgb(15, 33, 110));
+    }
+
+    .store_nav .store_nav_conten {
+      float: left;
+      position: relative;
+      top: 50%;
+      left: 30px;
+      margin-top: -12px;
+    }
+
+    .store_nav .store_nav_conten span {
+      margin-right: 36px;
+    }
+
+    .store_nav .store_search {
+      position: relative;
+      top: 50%;
+      margin-top: -18px;
+      float: right;
+    }
+
+    .store_nav .store_search .store_search_text,
+    .store_nav .btn_search {
+      width: 252px;
+      height: 33px;
+      background-color: rgb(49, 98, 130);
+      color: rgb(23, 42, 54);
+    }
+
+    .store_nav .store_nav_conten span {
+      color: #fff;
+    }
+
+    .store_search .store_search_text {
+      position: absolute;
+      right: 6px;
+    }
+
+
+    .store_nav .btn_search {
+      background-color: rgb(83, 153, 196);
+      width: 33px;
+      height: 33px;
+      position: absolute;
+      right: 7px;
+      top: 0px;
+    }
+
+
+
+    .main_conten_recommand {
+      display: flex;
+      position: relative;
+      flex-wrap: nowrap;
+      width: 1500px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .main_conten_recommand .reccomand_1,
+    .main_conten_recommand .reccomand_2,
+    .main_conten_recommand .reccomand_3 {
+      position: relative;
+      float: left;
+      width: 460px;
+      height: 550px;
+      margin: 0 100px;
+    }
+
+    .main_conten_recommand .reccomand_1 {
+      margin-right: -70px;
+      margin-left: 135px;
+    }
+
+    .main_conten_recommand .reccomand_2 {
+      position: relative;
+      margin-right: -70px;
+    }
+
+    .main_conten_recommand .prev,
+    .main_conten_recommand .next {
+      position: absolute;
+      width: 50px;
+      height: 130px;
+      background-color: rgb(0, 0, 0, 0.3);
+    }
+
+    .main_conten_recommand .prev {
+     left: 22px;
+     top:  25%
+    }
+
+    .main_conten_recommand .next {
+      right: 22px;
+      top:  25%
+    }
+
+    .main_conten_recommand ul {
+      position: absolute;
+      text-align: center;
+      left: 45%;
+      top: 460px
+    }
+
+    .main_conten_recommand ul li {
+      width: 20px;
+      height: 8px;
+      border: 1px solid rgb(77, 81, 90);
+      background-color: rgb(77, 81, 90);
+      border-radius: 10px;
+    }
+
+    .main_conten_recommand ul li:hover {
+      cursor: pointer;
+    }
+
+
+    /* 左右箭头的实现 */
+    .prev .arrow_left,
+    .next .arrow_right {
+      position: absolute;
+      top: 50px;
+      right: 60px;
+      width: 30px;
+      height: 30px;
+    }
+
+    .prev .arrow_left {
+      border-bottom: 10px solid #867f7a;
+      border-left: 10px solid #867f7a;
+      transform: rotate(45deg);
+      margin-right: -50px;
+      left: 10px;
+    }
+
+    .prev .arrow_left:hover {
+      cursor: pointer;
+    }
+
+    .next .arrow_right {
+      border-top: 10px solid #867f7a;
+      border-right: 10px solid #867f7a;
+      transform: rotate(45deg);
+      margin-right: -50px;
+    }
+
+    .next .arrow_right:hover {
+      cursor: pointer;
+    }
+
+    .main_conten{
+      display: block;
+    }
+
+    .main_conten_recommand ul .li_active {
+      border: 1px solid rgb(121, 126, 138);
+      background-color: rgb(121, 126, 138);
+    }
+
+    .reccomand_1 .price_1,
+    .reccomand_2 .price_2,
+    .reccomand_3 .price_3 {
+      position: absolute;
+      display: inline-block;
+      line-height: 32px;
+      bottom: 102px;
+      right: 28px;
+      width: 240px;
+      height: 32px;
+      background-color: rgb(12, 15, 17);
+    }
+
+    .price_1 a .price_diccount,
+    .price_2 a .price_diccount,
+    .price_3 a .price_diccount {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+      width: 69px;
+      height: 32px;
+      background-color: rgb(161, 205, 68);
+    }
+
+    .price_1 a .price_before,
+    .price_2 a .price_before,
+    .price_3 a .price_before {
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: line-through;
+      color: #fff;
+      width: 90px;
+      height: 32px;
+    }
+
+    .price_1 a .price_now,
+    .price_2 a .price_now,
+    .price_3 a .price_now {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      width: 61px;
+      height: 32px;
+    }
+
+    .main_conten_discount {
+      position: relative;
+      width: 1300px;
+      height: 502px;
+      background-color: #f4d5b3;
+      margin: 0 auto;
+      padding: 0px 20px;
+    }
+    
+    .discount_top{
+      width: 1200px;
+      margin: 10px auto;
+      padding-top: 3%;
+    }
+
+    .discount_text {
+      float: left;
+    }
+
+    .discount_text .discount_title {
+      font-size: 50px;
+      color: rgb(227, 83, 91);
+    }
+
+    .discount_text .discount_detail {
+      font-size: 17px;
+      color: rgb(47, 44, 36);
+    }
+
+
+    
+    .main_conten_discount button {
+      float: right;
+      width: 110px;
+      height: 29px;
+      margin-top: 30px;
+      font-size: 19px;
+      font-weight: 900;
+      border: 0px solid transparent;
+    }
+
+    .discount_detail_img {
+      width: 1200px;
+      margin: 0 auto;
+      padding-top: 2%;
+      overflow: hidden;
+    }
+
+    .discount_detail_img div {
+      text-align: center;
+      float: left;
+      width: 392px;
+      height: 268px;
+      margin-right: 10px;
+    }
+    .discount_detail_img a{
+      text-align: center;
+      float: left;
+      width: 392px;
+      height: 268px;
+      margin-right: 10px;
+    }
+
+    .discount_detail_img img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .discount_detail_img .img_2{
+      float: left;
+      margin-left: 2px;
+    }
+
+    .discount_detail_img .img_3{
+      float: right;
+      margin-right: -1px;
+    }
+
+    .discount_detail_img .price{
+      position: absolute;
+      display: inline-block;
+      line-height: 32px;
+      bottom: 51px;
+      right: 191px;
+      width: 240px;
+      height: 32px;
+      background-color: rgb(12, 15, 17);
+    }
+    
+    .discount_detail_img .img_1 .price
+    {
+        bottom: 51px;
+        left: 50px;
+        background-color: rgb(12, 15, 17);
+    }
+
+    .discount_detail_img .img_2 .price
+    {
+        bottom: 51px;
+        left: 454px;
+        background-color: rgb(12, 15, 17);
+    }
+
+    .price a
+    {
+      display: inline-block;
+      text-align: left;
+       width: 240px;
+      height: 32px;
+    }
+
+    .price span{
+        display: inline-block;
+    }
+
+    .price .price_diccount{
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+      width: 69px;
+      height: 32px;
+      background-color: rgb(161, 205, 68);
+    }
+
+    .price .price_before
+    {
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: line-through;
+      color: #fff;
+      width: 90px;
+      height: 32px;
+    }
+
+     .price .price_now
+    {
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        width: 61px;
+        height: 32px;
+    }
+
+    
+    .main_conten_discount .next,
+    .main_conten_discount .prev{
+      position: absolute;
+      width: 50px;
+      height: 130px;
+      background-color: rgb(0, 0, 0, 0.3);
+    }
+
+    .main_conten_discount .prev{
+      top: 39%;
+      left: -80px;
+    }
+
+    .main_conten_discount .next{
+      top: 39%;
+      right: -80px;
+    }
+    
+    .main_conten_more{
+      width: 1300px;
+      height: 100px;
+      margin: 0 auto;
+      margin-top: 80px;
+    }
+    .main_conten_more img{
+      width: 100%;
+      height: 100%;
+    }
+
+     .main_conten_more a{
+      display: inline-block;
+     }
+
+    .main_conten_more .cloum_1 div,
+     .main_conten_more .cloum_3 div
+    {
+      width: 318px;
+      height: 203px;
+      margin-left: 3px;
+      margin-bottom: 50px;
+      background-color: red;
+    }
+
+    .main_conten_more .cloum_2 div,
+     .main_conten_more .cloum_4 div
+    {
+      width: 430px;
+      height: 286px;
+      margin-bottom: 50px;
+      background-color: rebeccapurple;
+    }
+
+    .footer
+    {
+      position: absolute ;
+      left: 0;
+     bottom: 0%;
+      width: 100%;
+      height: 2px;
+      margin: 0 auto;
+      background-color: rgb(0, 0, 0);
+    }
+
+   .footer{
+      width: 100%;
+      background-color: rgb(23, 29, 37);
+      position: absolute;
+      bottom: 0;
+    }
+    
+    .footer .main_conten{
+      width: 1000px;
+      margin: 0 auto;
+      height: 100px;
+      padding: 10px;
+    }
+    
+    .footer  .bottom_text,
+    .footer .top_text{
+      padding: 10px;
+      border-top: 1px solid rgb(54, 60, 68);
+      border-bottom: 1px solid rgb(54, 60, 68);
+      color: rgb(158, 168, 181);
+      padding-bottom: 3px;
+    }
