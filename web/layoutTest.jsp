@@ -123,10 +123,10 @@
     </script>
     <script>
 
-        function sendOperation(operation,username){
+        function sendOperation(operation,param){
             let data = {}
             data["operation"] = operation;
-            data["username"] = username;
+            data["param"] = param;
             console.log(data);
             $.ajax({
                 type: "post",

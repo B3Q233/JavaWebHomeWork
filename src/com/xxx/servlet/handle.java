@@ -13,9 +13,7 @@ public class handle extends HttpServlet {
     public boolean deleteByUserName(String username) {
         boolean flag = false;
         try {
-
             flag = DAOFactory.getIEmpDAOInstance().deleteByUserName(username);
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -29,7 +27,7 @@ public class handle extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String operation = req.getParameter("operation");
-        String param = req.getParameter("username");
+        String param = req.getParameter("param");
         if(operation!=null&&operation.equals("delete")){
             resp.setContentType("text/plain;utf-8");
             boolean ret = deleteByUserName(param);

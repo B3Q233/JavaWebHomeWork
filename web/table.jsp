@@ -1,67 +1,44 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 2024/10/17
+  Time: 21:14
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Pteam 后台管理</title>
   <script src="js/jquery-3.5.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
 </head>
-<style>
-  body{
-    overflow-y:hidden;
-    overflow-x:hidden;
-  }
-</style>
-<body>
+  <!-- 内容主体区域 -->
+  <div style="padding:15px">
+    <br><br>
+    <h1>用户操作</h1>
+    <br><br>
 
-<div class="layui-layout layui-layout-admin" style="overflow: hidden">
-  <div class="layui-header">
-    <div class="layui-logo layui-hide-xs layui-bg-black">后台管理</div>
-    <!-- 头部区域（可配合layui 已有的水平导航） -->
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-        <a href="javascript:;">
-          admin
-        </a>
-      </li>
-
-    </ul>
-  </div>
-
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree" lay-filter="test">
-        <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">menu group 1</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;" data-url = "footer.jsp">menu 1</a></dd>
-            <dd><a href="javascript:;">menu 2</a></dd>
-            <dd><a href="javascript:;">menu 3</a></dd>
-          </dl>
+    <blockquote class="layui-elem-quote layui-text">
+      <ul>
+        <li>
+          可查看所有用户信息
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">menu group 2</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">list 1</a></dd>
-            <dd><a href="javascript:;">list 2</a></dd>
-          </dl>
+        <li>
+          可进行用户的删除
         </li>
       </ul>
+    </blockquote>
+
+    <br><br><br>
+
+    <table class="layui-hide" id="test"></table>
+
+    <div class="layui-card layui-panel">
+
     </div>
+    <br><br>
   </div>
-
-  <div class="layui-body">
-    <iframe id="iframeMain" src="table.jsp" style="width: 100%"; height="100%";></iframe>
-  </div>
-
-  <div class="layui-footer">
-  </div>
-</div>
-
 <script type="text/html" id="custom">
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-id = "{{d.id}}">删除</a>
 </script>
@@ -185,6 +162,4 @@
     })
   })
 </script>
-</body>
-
 </html>
