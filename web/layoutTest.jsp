@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 
@@ -5,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Pteam 后台管理</title>
+    <script src="js/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
 </head>
 
@@ -14,14 +16,6 @@
         <div class="layui-header">
             <div class="layui-logo layui-hide-xs layui-bg-black">后台管理</div>
             <!-- 头部区域（可配合layui 已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <!-- 移动端显示 -->
-                <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
-                    <i class="layui-icon layui-icon-spread-left"></i>
-                </li>
-
-
-            </ul>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                     <a href="javascript:;">
@@ -39,7 +33,7 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">menu group 1</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">menu 1</a></dd>
+                            <dd><a href="javascript:;" data-url = "footer.jsp">menu 1</a></dd>
                             <dd><a href="javascript:;">menu 2</a></dd>
                             <dd><a href="javascript:;">menu 3</a></dd>
                         </dl>
@@ -122,7 +116,6 @@
                     });
                 }
             });
-
         });
     </script>
     <script>
@@ -146,6 +139,17 @@
                 ]]
             });
         });
+    </script>
+    <script>
+        layui.use('element',function (){
+            let element =   layui.element;
+
+            element.on('nav(test)',function (elem){
+                let url = elem.data('url');
+                if(url){}
+                document.getElementById('contentIframe').src = url;
+            })
+        })
     </script>
 </body>
 

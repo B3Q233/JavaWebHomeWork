@@ -8,7 +8,7 @@
   <title>登录</title>
   <link rel="stylesheet" href="../style/login.css">
   <link rel="stylesheet" href="../style/font/icomoon/style.css">
-  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>

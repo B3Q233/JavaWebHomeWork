@@ -24,7 +24,7 @@
     </servlet>
     <servlet>
         <servlet-name>getData</servlet-name>
-<!--        <servlet-class>com.xxx.servlet.getData</servlet-class>-->
+        <servlet-class>com.xxx.servlet.getData</servlet-class>
     </servlet>
 
     <!--servlet 映射-->
