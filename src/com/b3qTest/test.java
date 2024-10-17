@@ -1,5 +1,7 @@
 package com.b3qTest;
 
+import com.b3qTest.factory.DAOFactory;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +20,10 @@ public class test {
     }
 
     public static void main(String[] args) throws Exception {
+
+        Boolean f = DAOFactory.getIEmpDAOInstance().deleteByUserName("b3131232s2");
+        System.out.println(f);
+
         //System.out.println("good luck");
 
         //test add

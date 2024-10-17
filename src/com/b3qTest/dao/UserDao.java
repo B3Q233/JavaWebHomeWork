@@ -34,4 +34,27 @@ public interface UserDao {
      */
     public User findByUserName(String user_name)throws Exception;
 
+    /**
+     * 根据 pagesize offset 进行分页查询
+     * @param pagesize 分页大小;
+     * @param offset 第几页;
+     * @return 分页的数据
+     * @throw Exception 如果有异常，则直接抛出
+     */
+    public List<User> findByPage(int pagesize,int offset)throws Exception;
+
+    /**
+     * 返回总数据条数
+     * @return 数据库数据数量
+     * @throw Exception 如果有异常，则直接抛出
+     */
+    public int getSQLSize() throws Exception;
+
+    /**
+     * 根据用户名删除对应的数据
+     * @param username 用户名;
+     * @return 返回一个bool值，为真则表示删除成功，否则删除失败
+     * @throw Exception 如果有异常，则直接抛出
+     */
+    public Boolean deleteByUserName(String username) throws Exception;
 }

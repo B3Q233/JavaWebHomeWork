@@ -69,4 +69,43 @@ public class UserService implements UserDao {
         }
         return user;
     }
+
+    @Override
+    public List<User> findByPage(int pagesize, int offset) throws Exception {
+        List<User> all = null;
+        try{
+            all = this.dao.findByPage(pagesize,offset);
+        }catch (Exception e){
+            throw e;
+        }finally {
+            this.dbcon.close();
+        }
+        return all;
+    }
+
+    @Override
+    public int getSQLSize() throws Exception {
+        int size = 0;
+        try{
+            size = this.dao.getSQLSize();
+        }catch (Exception e){
+            throw e;
+        }finally {
+            this.dbcon.close();
+        }
+        return size;
+    }
+
+    @Override
+    public Boolean deleteByUserName(String username) throws Exception {
+        Boolean flag = false;
+        try{
+            flag = this.dao.deleteByUserName(username);
+        }catch (Exception e){
+            throw e;
+        }finally {
+            this.dbcon.close();
+        }
+        return flag;
+    }
 }

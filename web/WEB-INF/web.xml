@@ -26,6 +26,10 @@
         <servlet-name>getData</servlet-name>
         <servlet-class>com.xxx.servlet.getData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>handle</servlet-name>
+        <servlet-class>com.xxx.servlet.handle</servlet-class>
+    </servlet>
 
     <!--servlet 映射-->
 
@@ -48,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>getData</servlet-name>
         <url-pattern>/getdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>handle</servlet-name>
+        <url-pattern>/handle</url-pattern>
     </servlet-mapping>
 
     <!--过滤器配置-->

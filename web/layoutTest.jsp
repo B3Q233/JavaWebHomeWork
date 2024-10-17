@@ -77,7 +77,6 @@
                 <br><br><br>
 
                 <table class="layui-hide" id="test"></table>
-                </table>
 
                 <div class="layui-card layui-panel">
 
@@ -89,6 +88,10 @@
         <div class="layui-footer">
         </div>
     </div>
+
+    <script type="text/html" id="custom">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-id = "{{d.id}}">删除</a>
+    </script>
 
     <script src="layui/layui.js"></script>
     <script>
@@ -119,24 +122,82 @@
         });
     </script>
     <script>
-        layui.use('table', function () {
-            var table = layui.table;
 
+        function sendOperation(operation,username){
+            let data = {}
+            data["operation"] = operation;
+            data["username"] = username;
+            console.log(data);
+            $.ajax({
+                type: "post",
+                url: '/handle',
+                //data:定义数据,以键值对的方式放在大括号里
+                data: data,
+                dataType: 'text',
+                //statusCode:状态码，用于定义执行时提示的状态
+                statusCode: {
+                    404: function () {
+                        alert("404");
+                    },
+                    500: function () {
+                        alert("500");
+                    }
+                },
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+
+        layui.use('table', function () {
+            let table = layui.table;
             table.render({
                 elem: '#test'
-                , url: '/demo/table/user/'
-                , cellMinWidth: 80
+                , url: '/getdata'
+                , page: true
+                , response: {
+                        statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
+                    },
+                    parseData: function(res){
+                        console.log(res);
+                        return {
+                            "code": res.code, //解析接口状态
+                            "msg": res.msg, //解析提示文本
+                            "count": res.count, //解析数据长度
+                            "data": res.data //解析数据列表
+                        };
+                    }
+                , cellMinWidth: 60
                 , cols: [[
                     { field: 'id', width: 80, title: 'ID', sort: true }
-                    , { field: 'username', width: 80, title: '用户名' }
-                    , { field: 'sex', width: 80, title: '性别', sort: true }
-                    , { field: 'city', width: 80, title: '城市' }
-                    , { field: 'sign', title: '签名', width: '30%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                    , { field: 'experience', title: '积分', sort: true }
-                    , { field: 'score', title: '评分', sort: true }
-                    , { field: 'classify', title: '职业' }
-                    , { field: 'wealth', width: 137, title: '财富', sort: true }
+                    , { field: 'username', width: 120, title: '用户名' }
+                    , {field: 'name',title: "姓名"}
+                    , { field: 'gender', width: 80, title: '性别', sort: true }
+                    , { field: 'birthday', width: 150, title: '生日' }
+                    , { field: 'address', title: '住址', width: '10%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , { field: 'phone', title: '电话', sort: true }
+                    , { field: 'email', title: '邮箱',width:200, sort: true }
+                    , { field: 'zip', title: '邮编' }
+                    ,{
+                        title: '操作',
+                        templet:'#custom'
+                    }
                 ]]
+            });
+
+            table.on('tool(test)', function(obj){
+                console.log("123");
+                let layEvent = obj.event; // 获取 lay-event 的值
+                if (layEvent === 'del') {
+                    console.log("del")
+                    // 删除
+                    layer.confirm('确定删除？', function (index) {
+                        obj.del(); // 删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        sendOperation("delete",obj.data.username);
+                    })
+                }
             });
         });
     </script>
