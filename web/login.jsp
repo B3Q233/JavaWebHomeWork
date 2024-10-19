@@ -6,8 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>登录</title>
-  <link rel="stylesheet" href="../style/login.css">
-  <link rel="stylesheet" href="../style/font/icomoon/style.css">
+  <link rel="stylesheet" href="/style/login.css">
+  <link rel="stylesheet" href="/style/font/icomoon/style.css">
   <script src="js/jquery-3.5.1.min.js"></script>
 </head>
 
@@ -42,7 +42,7 @@
       <div class="globle_action_meau">
         <a href="#" class="header_install">
           &nbsp;&nbsp;
-          <span class="font_download"></span>
+          <span class="font_download"></span>
           <span>下载pteam</span>
         </a>
         &nbsp;&nbsp;
@@ -81,9 +81,7 @@
       <a href="/resister.jsp" style="margin-top: 46px; margin-left: 8px;">没有账户？点击注册</a>
     </div>
   </div>
-
-
-  <script src="js/createCaptcha.js"></script>
+  <jsp:include page="footer.jsp"></jsp:include>
 </body>
-<jsp:include page="footer.jsp"></jsp:include>
+<script src="js/createCaptcha.js"></script>
 </html>

@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
 <!-- 页脚 -->
-<div class="footer">
-    <div class="main_conten">
+<div class="footer" >
+    <div class="main_conten" >
         <div class="top_text">
             <p>©2024 Melon Corporation。保留所有权利。所有商标均为其在只因国及其它国家/地区的各自持有者所有。</p>
             <div>

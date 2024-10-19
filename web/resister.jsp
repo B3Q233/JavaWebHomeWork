@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="style/font/icomoon/style.css">
     <script src="js/jquery-3.5.1.min.js"></script>
     <style>
+        body{
+            height: 100%;
+            margin: 0;
+        }
         .gender{
             position: relative;
         }
@@ -91,7 +95,7 @@
         <div class="globle_action_meau">
             <a href="#" class="header_install">
                 &nbsp;&nbsp;
-                <span class="font_download"></span>
+                <span class="font_download"> </span>
                 <span>下载pteam</span>
             </a>
             &nbsp;&nbsp;
@@ -174,11 +178,12 @@
         <a href="/login.jsp" style="margin-top: -30px;">
             <h4 style="color: #fff;">已有账户？点击登录 </h4>
         </a>
+        <jsp:include page="footer.jsp"></jsp:include>
     </div>
 </div>
 
 <!-- 页脚 -->
-<jsp:include page="footer.jsp"></jsp:include>
+
 <script src="js/createCaptcha.js"></script>
 </body>
 

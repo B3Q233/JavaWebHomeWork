@@ -1,190 +1,90 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Pteam 后台管理</title>
-  <script src="js/jquery-3.5.1.min.js"></script>
+  <meta charset="UTF-8">
+  <title>新闻</title>
   <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <link rel="stylesheet" href="/style/login.css">
+  <link rel="stylesheet" href="/style/font/icomoon/style.css">
+  <link rel="stylesheet" href="/style/newsList.css">
+  <script src="layui/layui.js"></script>
+  <script src="js/jquery-3.5.1.min.js"></script>
 </head>
-<style>
-  body{
-    overflow-y:hidden;
-    overflow-x:hidden;
-  }
-</style>
 <body>
-
-<div class="layui-layout layui-layout-admin" style="overflow: hidden">
-  <div class="layui-header">
-    <div class="layui-logo layui-hide-xs layui-bg-black">后台管理</div>
-    <!-- 头部区域（可配合layui 已有的水平导航） -->
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-        <a href="javascript:;">
-          admin
+<div class="responsive_header">
+  <div class="header_conten">
+    <div class="header_logo">
+      <img src="/image/bg_logo/header_logo.png" alt="">
+    </div>
+    <div class="nav">
+      <ul>
+        <li><a href="/html/main_pasage.html">
+          <p>商店</p>
         </a>
-      </li>
-
-    </ul>
-  </div>
-
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree" lay-filter="test">
-        <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">menu group 1</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;" data-url = "footer.jsp">menu 1</a></dd>
-            <dd><a href="javascript:;">menu 2</a></dd>
-            <dd><a href="javascript:;">menu 3</a></dd>
-          </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">menu group 2</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">list 1</a></dd>
-            <dd><a href="javascript:;">list 2</a></dd>
-          </dl>
+        <li><a href="/html/community_passage.html">
+          <p>社区</p>
+        </a>
+        </li>
+        <li><a href="#">
+          <p class="active">关于</p>
+        </a>
+        </li>
+        <li><a href="/html/customer_service_passage.html">
+          <p>客服</p>
+        </a>
         </li>
       </ul>
     </div>
-  </div>
-
-  <div class="layui-body">
-    <iframe id="iframeMain" src="table.jsp" style="width: 100%"; height="100%";></iframe>
-  </div>
-
-  <div class="layui-footer">
+    <div class="globle_action_meau">
+      <a href="#" class="header_install">
+        &nbsp;&nbsp;
+        <span class="font_download"></span>
+        <span>下载pteam</span>
+      </a>
+      &nbsp;&nbsp;
+      &nbsp;&nbsp;
+      <a href="/html/login.html">登录</a>
+      &nbsp;|&nbsp;
+      <a class="header_language_pulldown" href="#">语言</a>
+    </div>
   </div>
 </div>
+<div class="content">
+  <a href="#" class="game-brief">
+    <div class="brief-show">
+      <div class="text">
+        <h3 class="game-title">0721</h3>
+        <h1>111111111111111111111111111111</h1>
+        <h3 class="time">发布时间： 2024-10-03  作者：b3q</h3>
+        <textarea class="content-brief">近期我们关注到超越者们在社区对于温控塔玩法的相关反馈，对此我们梳理了相关问题与各位进行同步和答疑，如您有新版本的其他问题，可以通过反馈平台和客服和我们进行反馈。
 
-<script type="text/html" id="custom">
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-id = "{{d.id}}">删除</a>
-</script>
-
-<script src="layui/layui.js"></script>
+1.温控塔的解锁条件温控塔的解锁条件温控塔的解锁条件温控塔的解锁条件
+当赛季到达第二阶段【炽尘弥散】后，超越者可通过模因-建造解锁温控塔。
+                </textarea>
+      </div>
+      <div class="img">
+        <img src="image/game_pic/capsule_616x353_1.jpg">
+      </div>
+    </div>
+  </a>
+</div>
+<div id="test1" class="page-set"></div>
+<jsp:include page="footer.jsp"></jsp:include>
 <script>
-  //JS
-  layui.use(['element', 'layer', 'util'], function () {
-    var element = layui.element
-            , layer = layui.layer
-            , util = layui.util
-            , $ = layui.$;
+  layui.use('laypage', function(){
+    let laypage = layui.laypage;
+    console.log(123);
 
-    //头部事件
-    util.event('lay-header-event', {
-      //左侧菜单事件
-      menuLeft: function (othis) {
-        layer.msg('展开左侧菜单的操作', { icon: 0 });
-      }
-      , menuRight: function () {
-        layer.open({
-          type: 1
-          , content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
-          , area: ['260px', '100%']
-          , offset: 'rt' //右上角
-          , anim: 5
-          , shadeClose: true
-        });
-      }
+
+
+    laypage.render({
+      elem: 'test1'
+      ,count: 5000
+      ,theme: '#4c535f'
+      ,url: '/getNewsList'
     });
   });
-</script>
-<script>
-
-  function sendOperation(operation,param){
-    let data = {}
-    data["operation"] = operation;
-    data["param"] = param;
-    console.log(data);
-    $.ajax({
-      type: "post",
-      url: '/handle',
-      //data:定义数据,以键值对的方式放在大括号里
-      data: data,
-      dataType: 'text',
-      //statusCode:状态码，用于定义执行时提示的状态
-      statusCode: {
-        404: function () {
-          alert("404");
-        },
-        500: function () {
-          alert("500");
-        }
-      },
-      success: function (data) {
-        console.log(data);
-      }
-    });
-  }
-
-
-  layui.use('table', function () {
-    let table = layui.table;
-    table.render({
-      elem: '#test'
-      , url: '/getdata'
-      , page: true
-      , response: {
-        statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
-      },
-      parseData: function(res){
-        console.log(res);
-        return {
-          "code": res.code, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.count, //解析数据长度
-          "data": res.data //解析数据列表
-        };
-      }
-      , cellMinWidth: 60
-      , cols: [[
-        { field: 'id', width: 80, title: 'ID', sort: true }
-        , { field: 'username', width: 120, title: '用户名' }
-        , {field: 'name',title: "姓名"}
-        , { field: 'gender', width: 80, title: '性别', sort: true }
-        , { field: 'birthday', width: 150, title: '生日' }
-        , { field: 'address', title: '住址', width: '10%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-        , { field: 'phone', title: '电话', sort: true }
-        , { field: 'email', title: '邮箱',width:200, sort: true }
-        , { field: 'zip', title: '邮编' }
-        ,{
-          title: '操作',
-          templet:'#custom'
-        }
-      ]]
-    });
-
-    table.on('tool(test)', function(obj){
-      console.log("123");
-      let layEvent = obj.event; // 获取 lay-event 的值
-      if (layEvent === 'del') {
-        console.log("del")
-        // 删除
-        layer.confirm('确定删除？', function (index) {
-          obj.del(); // 删除对应行（tr）的DOM结构，并更新缓存
-          layer.close(index);
-          sendOperation("delete",obj.data.username);
-        })
-      }
-    });
-  });
-</script>
-<script>
-  layui.use('element',function (){
-    let element =   layui.element;
-
-    element.on('nav(test)',function (elem){
-      let url = elem.data('url');
-      if(url){}
-      document.getElementById('contentIframe').src = url;
-    })
-  })
 </script>
 </body>
-
 </html>

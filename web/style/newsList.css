@@ -1,0 +1,84 @@
+body{
+    background-image: none;
+    background-color: rgb(45, 49, 56);
+}
+
+.content{
+    margin: 0 auto;
+    width: 100%;
+    min-height: 600px;
+}
+
+.content a{
+    display: block;
+}
+
+.content a .brief-show{
+    margin: 40px auto;
+    width: 900px;
+    height: 200px;
+    background-color: rgb(54, 58, 67);
+    display: flex;
+    justify-content: space-between;
+}
+
+.content a .brief-show:hover{
+    background-color: rgb(77, 83, 96);
+    cursor: pointer;
+}
+
+.brief-show .text *{
+    padding: 10px;
+}
+
+.brief-show .text h1,
+.brief-show .text h3{
+    color: rgb(255, 255, 255);
+}
+
+.brief-show .text{
+    width: 200px;
+    height: 200px;
+    flex: 60%;
+}
+
+.brief-show .text .time{
+    font-size: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    color: rgb(176, 173, 146);
+}
+
+.brief-show .text .content-brief{
+    width: 95%;
+    height: 49%;
+    color: rgb(223, 224, 231);
+    font-size: 12px;
+}
+
+.brief-show .img{
+    width: 200px;
+    height: 200px;
+    flex: 40%;
+}
+
+.img img{
+    padding: 10px;
+}
+
+.page-set{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.page-set #layui-laypage-1{
+    background-color: #2d3138;
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+}
+
+.page-set #layui-laypage-1 *{
+    /*background-color: #2d3138;*/
+    z-index: -1;
+}
