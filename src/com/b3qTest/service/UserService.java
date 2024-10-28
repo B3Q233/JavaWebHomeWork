@@ -13,16 +13,13 @@ import java.util.List;
  */
 public class UserService implements UserDao {
 
-    // 数据库连接对象
-    private DBConnection dbcon = null;
 
     // UserDao 对象 实现应用
     private UserDao dao = null;
 
     public UserService() {
         try{
-            this.dbcon = new DBConnection();
-            this.dao = new UserDaoImpl(this.dbcon.getConnection());
+            this.dao = new UserDaoImpl();
         }catch (Exception e){
             throw new RuntimeException("创建链接失败",e);
         }
@@ -37,8 +34,6 @@ public class UserService implements UserDao {
             }
         }catch (Exception e){
             throw e;
-        } finally {
-            this.dbcon.close();
         }
         return flag;
     }
@@ -50,8 +45,6 @@ public class UserService implements UserDao {
             all = this.dao.findAll(user_name);
         }catch (Exception e){
             throw e;
-        }finally {
-            this.dbcon.close();
         }
         return all;
     }
@@ -64,8 +57,6 @@ public class UserService implements UserDao {
         }catch (Exception e){
             throw e;
 
-        }finally {
-            this.dbcon.close();
         }
         return user;
     }
@@ -77,8 +68,6 @@ public class UserService implements UserDao {
             all = this.dao.findByPage(pagesize,offset);
         }catch (Exception e){
             throw e;
-        }finally {
-            this.dbcon.close();
         }
         return all;
     }
@@ -90,8 +79,6 @@ public class UserService implements UserDao {
             size = this.dao.getSQLSize();
         }catch (Exception e){
             throw e;
-        }finally {
-            this.dbcon.close();
         }
         return size;
     }
@@ -103,8 +90,6 @@ public class UserService implements UserDao {
             flag = this.dao.deleteByUserName(username);
         }catch (Exception e){
             throw e;
-        }finally {
-            this.dbcon.close();
         }
         return flag;
     }

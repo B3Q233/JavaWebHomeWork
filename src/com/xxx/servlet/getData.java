@@ -3,15 +3,12 @@ package com.xxx.servlet;
 import com.alibaba.fastjson2.JSONObject;
 import com.b3qTest.factory.DAOFactory;
 import com.b3qTest.pojo.User;
-import org.apache.taglibs.standard.lang.jstl.test.beans.Factory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 public class getData extends HttpServlet {
@@ -46,8 +43,8 @@ public class getData extends HttpServlet {
         List<User> users;
         int size = 0;
         try {
-           users = DAOFactory.getIEmpDAOInstance().findByPage(pagesize,offset);
-           size = DAOFactory.getIEmpDAOInstance().getSQLSize();
+           users = DAOFactory.getIEmpUserDAOInstance().findByPage(pagesize,offset);
+           size = DAOFactory.getIEmpUserDAOInstance().getSQLSize();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

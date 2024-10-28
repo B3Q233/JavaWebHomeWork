@@ -9,9 +9,9 @@ import java.util.List;
 
 /**
  * @author ASUS
- * ÕýÔò±í´ïÊ½ ²âÊÔ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ ï¿½ï¿½ï¿½ï¿½
  * ok
- * ÑéÖ¤ÂëÉú³É ²âÊÔ
+ * ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  * ok
  */
 
@@ -19,7 +19,7 @@ public class test {
 
     public static void main(String[] args) throws Exception {
         List<User> users;
-        users = DAOFactory.getIEmpDAOInstance().findByPage(10,3);
+        users = DAOFactory.getIEmpUserDAOInstance().findByPage(10,3);
         for (int i =0 ;i<users.size();i++){
             System.out.println(users.get(i).getUser_name());
             System.out.println(users.get(i).getName());

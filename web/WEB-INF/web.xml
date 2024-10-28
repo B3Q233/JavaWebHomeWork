@@ -34,6 +34,14 @@
         <servlet-name>getNewsList</servlet-name>
         <servlet-class>com.xxx.servlet.getNewsBrief</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>uploadImg</servlet-name>
+        <servlet-class>com.xxx.servlet.upLoadImg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addNews</servlet-name>
+        <servlet-class>com.xxx.servlet.addNews</servlet-class>
+    </servlet>
 
     <!--servlet 映射-->
 
@@ -65,6 +73,14 @@
         <servlet-name>getNewsList</servlet-name>
         <url-pattern>/getNewsList</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uploadImg</servlet-name>
+        <url-pattern>/uploadImg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNews</servlet-name>
+        <url-pattern>/addNews</url-pattern>
+    </servlet-mapping>
 
     <!--过滤器配置-->
 
@@ -77,5 +93,6 @@
         <filter-name>adminManagerAccess</filter-name>
         <url-pattern>/layout-admin.jsp</url-pattern>
     </filter-mapping>
+
 
 </web-app>

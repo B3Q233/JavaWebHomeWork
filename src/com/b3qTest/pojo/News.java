@@ -33,6 +33,8 @@ public class News {
     // 日期
     private Date date;
 
+    private String article_column;
+
     public String getTitle() {
         return title;
     }
@@ -63,5 +65,13 @@ public class News {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getArticle_column() {
+        return article_column;
+    }
+
+    public void setArticle_column(String article_column) {
+        this.article_column = article_column;
     }
 }

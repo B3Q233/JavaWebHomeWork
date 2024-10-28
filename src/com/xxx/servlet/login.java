@@ -35,7 +35,7 @@ public class login extends HttpServlet {
         }
         User user;
         try {
-            user = DAOFactory.getIEmpDAOInstance().findByUserName(req.getParameter("username"));
+            user = DAOFactory.getIEmpUserDAOInstance().findByUserName(req.getParameter("username"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

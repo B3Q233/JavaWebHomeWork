@@ -13,7 +13,7 @@ public class handle extends HttpServlet {
     public boolean deleteByUserName(String username) {
         boolean flag = false;
         try {
-            flag = DAOFactory.getIEmpDAOInstance().deleteByUserName(username);
+            flag = DAOFactory.getIEmpUserDAOInstance().deleteByUserName(username);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

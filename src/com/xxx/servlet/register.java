@@ -111,6 +111,10 @@ public class register extends HttpServlet {
         return flag;
     }
     public Date changeDateFormat(String str) throws ParseException {
+        if(str==null||str.equals("")){
+            SimpleDateFormat df = new SimpleDateFormat("");
+            return null;
+        }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date date = df.parse(str);
         return date;
@@ -141,6 +145,7 @@ public class register extends HttpServlet {
         String captcha = (String) session.getAttribute("register");
         captcha = captcha.toLowerCase();
         String getCaptcha = req.getParameter("captcha");
+        System.out.println("get："+getCaptcha);
         if (getCaptcha != null) {
             getCaptcha = getCaptcha.toLowerCase();
         }else {
@@ -150,7 +155,7 @@ public class register extends HttpServlet {
         User user= new User();
         user.setUser_name(username);
         try {
-            if(DAOFactory.getIEmpDAOInstance().findByUserName(user.getUser_name())!=null){
+            if(DAOFactory.getIEmpUserDAOInstance().findByUserName(user.getUser_name())!=null){
                 resp.getWriter().write("1");
                 return;
             }
@@ -162,7 +167,7 @@ public class register extends HttpServlet {
             resp.getWriter().write("2");
             return;
         }
-        user.setName(req.getParameter("nameS"));
+        user.setName(req.getParameter("name"));
         if("man".equals(req.getParameter("gender"))){
             user.setGender("男");
         }else {
@@ -181,7 +186,7 @@ public class register extends HttpServlet {
         user.setZip(changeToInt(req.getParameter("zip")));
 
         try {
-            DAOFactory.getIEmpDAOInstance().addUser(user);
+            DAOFactory.getIEmpUserDAOInstance().addUser(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

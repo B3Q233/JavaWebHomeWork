@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 2024/10/17
-  Time: 21:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
 </head>
   <!-- 内容主体区域 -->
-  <div style="padding:15px">
+<div style="padding:15px">
     <br><br>
     <h1>用户操作</h1>
     <br><br>
@@ -125,7 +118,7 @@
         , {field: 'name',title: "姓名"}
         , { field: 'gender', width: 80, title: '性别', sort: true }
         , { field: 'birthday', width: 150, title: '生日' }
-        , { field: 'address', title: '住址', width: '10%', minWidth: 100 } //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+        , { field: 'address', title: '住址', width: '10%', minWidth: 100 }
         , { field: 'phone', title: '电话', sort: true }
         , { field: 'email', title: '邮箱',width:200, sort: true }
         , { field: 'zip', title: '邮编' }

@@ -1,3 +1,5 @@
+sendReqCapthcha();
+
 // 用户名：必须是英文字母或数字，长度3-15
 let usernameRegex = /^[A-Za-z0-9]{3,15}$/;
 
@@ -138,8 +140,6 @@ function sendReqCapthcha() {
 }
 
 function check() {
-    sendReqCapthcha();
-
     let is_all_right = true;
     let user_name = document.getElementById('user_name').value;
     let pwd = document.getElementById('pwd').value;
@@ -321,4 +321,3 @@ function check() {
     }
 }
 
-sendReqCapthcha();

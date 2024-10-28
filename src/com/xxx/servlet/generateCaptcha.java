@@ -51,6 +51,7 @@ public class generateCaptcha extends HttpServlet {
             if(session.getAttribute("register")!=null){
                 session.removeAttribute("register");
             }
+            System.out.println("验证码："+getRString);
             session.setAttribute("register",getRString);
         }
         String tmp =getRString;
