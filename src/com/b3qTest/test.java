@@ -20,6 +20,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * ok
  * 数据连接池，多线程测试
  * ok
+ * sql反射优化代码测试
+ * ok
  */
 
 public class test {
@@ -99,8 +101,11 @@ public class test {
 
         //System.out.println(ComTool.getNowDate());
 
-        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findNews(1).getId());
-        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findNews("asdsaasd","国内").getId());
+//        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findNews(1).getId());
+//        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findNews("asdsaasd","国内").getId());
+//        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findByColumn("国际"));
+//        System.out.println(DAOFactory.getIEmpNewsDAOInstance().getSizeByColumn("国内"));
+//        System.out.println(DAOFactory.getIEmpNewsDAOInstance().findByColumn(3,1,"国际"));
     }
 
 }

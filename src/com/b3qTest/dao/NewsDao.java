@@ -43,11 +43,36 @@ public interface NewsDao {
      */
     public News findNews(String title,String column) throws  Exception;
 
-    /**
+    /**.
      *  新闻查询函数，根据新闻id查询新闻
      * @param id 文章 id
      * @return News 对象
      * @throws Exception
      */
     public News findNews(int id) throws Exception;
+
+    /**.
+     *  新闻查询函数，根据最低一级栏目，查找所有属于该栏目的新闻
+     * @param column 新闻所属栏目
+     * @return List<News> news对象列表
+     * @throws Exception
+     */
+    public List<News> findByColumn(String column) throws Exception;
+
+    /**.
+     *  新闻查询函数，栏目为column的第x页的所有新闻
+     * @param pagesize 分页大小
+     * @param offset 第几页
+     * @return List<News> news对象列表
+     * @throws Exception
+     */
+    public List<News> findByColumn(int pagesize,int offset,String column) throws Exception;
+
+    /**.
+     *  栏目新闻数量查询函数，查询一个栏目中所有新闻的数量，用于分页
+     * @param column 新闻所属栏目
+     * @return int 一个栏目中所有新闻的数量
+     * @throws Exception
+     */
+    public int getSizeByColumn(String column) throws Exception;
 }

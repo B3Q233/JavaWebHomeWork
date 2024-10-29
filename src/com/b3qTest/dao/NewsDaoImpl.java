@@ -11,25 +11,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsDaoImpl implements NewsDao{
+public class NewsDaoImpl implements NewsDao {
     @Override
     public boolean insert(News news) throws Exception {
         boolean flag = false;
         try (Connection conn = JDBCUtils.getConnection()) {
-            flag = DBTool.insert(news,conn);
+            flag = DBTool.insert(news, conn);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败",e);
+            throw new RuntimeException("创建链接失败", e);
         }
-       return flag;
+        return flag;
     }
 
     @Override
-    public boolean delete(News news,String key) throws Exception {
+    public boolean delete(News news, String key) throws Exception {
         boolean flag = false;
         try (Connection conn = JDBCUtils.getConnection()) {
-            flag = DBTool.delete(news,conn,key);
+            flag = DBTool.delete(news, conn, key);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败",e);
+            throw new RuntimeException("创建链接失败", e);
         }
         return flag;
     }
@@ -38,9 +38,9 @@ public class NewsDaoImpl implements NewsDao{
     public List<News> queryAll(News news) throws Exception {
         List<News> list = new ArrayList<News>();
         try (Connection conn = JDBCUtils.getConnection()) {
-            list = DBTool.queryAll(news,conn);
+            list = DBTool.queryAll(news, conn);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败",e);
+            throw new RuntimeException("创建链接失败", e);
         }
         return list;
     }
@@ -51,28 +51,31 @@ public class NewsDaoImpl implements NewsDao{
 
         try (Connection conn = JDBCUtils.getConnection()) {
             // 查询 sql 字符串
-            String sql = "select id, title, content, date, article_column, author from news where title = ? and article_column = ?";
+            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where title = ? and article_column = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,title);
-            pstmt.setString(2,column);
+            pstmt.setString(1, title);
+            pstmt.setString(2, column);
 
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()){
-                news = new News();
-                news.setId(rs.getInt(1));
-                news.setTitle(rs.getString(2));
-                news.setContent(rs.getString(3));
-                news.setDate(rs.getDate(4));
-                news.setArticle_column(rs.getString(5));
-                news.setAuthor(rs.getString(6));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    news = new News();
+                    news.setId(rs.getInt(1));
+                    news.setTitle(rs.getString(2));
+                    news.setContent(rs.getString(3));
+                    news.setDate(rs.getDate(4));
+                    news.setArticle_column(rs.getString(5));
+                    news.setAuthor(rs.getString(6));
+                    news.setBrief(rs.getString(7));
+                    news.setBriefImg(rs.getString(8));
+                }
+                pstmt.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("根据title和column查找新闻错误，请检查输入！！！！", e);
             }
-            pstmt.close();
-        }catch (SQLException e) {
-            throw new RuntimeException("根据title和column查找新闻错误，请检查输入！！！！",e);
-        }
 
-        // 没有找到则返回 null
-        return news;
+            // 没有找到则返回 null
+            return news;
+        }
     }
 
     @Override
@@ -81,26 +84,116 @@ public class NewsDaoImpl implements NewsDao{
 
         try (Connection conn = JDBCUtils.getConnection()) {
             // 查询 sql 字符串
-            String sql = "select id, title, content, date, article_column, author from news where id = ?";
+            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,id);
+            pstmt.setInt(1, id);
 
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()){
-                news = new News();
-                news.setId(rs.getInt(1));
-                news.setTitle(rs.getString(2));
-                news.setContent(rs.getString(3));
-                news.setDate(rs.getDate(4));
-                news.setArticle_column(rs.getString(5));
-                news.setAuthor(rs.getString(6));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    news = new News();
+                    news.setId(rs.getInt(1));
+                    news.setTitle(rs.getString(2));
+                    news.setContent(rs.getString(3));
+                    news.setDate(rs.getDate(4));
+                    news.setArticle_column(rs.getString(5));
+                    news.setAuthor(rs.getString(6));
+                    news.setBrief(rs.getString(7));
+                    news.setBriefImg(rs.getString(8));
+                }
+                pstmt.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("根据id查找新闻错误，请检查输入！！！！", e);
             }
-            pstmt.close();
-        }catch (SQLException e) {
-            throw new RuntimeException("根据id查找新闻错误，请检查输入！！！！",e);
+
+            // 没有找到则返回 null
+            return news;
+        }
+    }
+
+    @Override
+    public List<News> findByColumn(String column) throws Exception {
+        List<News> list = new ArrayList<News>();
+        try (Connection conn = JDBCUtils.getConnection()) {
+            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where article_column = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, column);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    News news = new News();
+                    news.setId(rs.getInt(1));
+                    news.setTitle(rs.getString(2));
+                    news.setContent(rs.getString(3));
+                    news.setDate(rs.getDate(4));
+                    news.setArticle_column(rs.getString(5));
+                    news.setAuthor(rs.getString(6));
+                    news.setBrief(rs.getString(7));
+                    news.setBriefImg(rs.getString(8));
+                    list.add(news);
+                }
+                pstmt.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("根据栏目查找新闻失败，请检查输入栏目", e);
+            }
+            return list;
+        }
+    }
+
+    @Override
+    public int getSizeByColumn(String column) throws Exception {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM news WHERE article_column = ?";
+
+        try (Connection conn = JDBCUtils.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // 设置参数，防止SQL注入
+            pstmt.setString(1, column);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt(1); // 获取计数结果
+                }
+            }
+        } catch (SQLException e) {
+            // 可以根据需要记录日志或者进行其他异常处理
+            throw new Exception("查询栏目新闻数量失败", e);
         }
 
-        // 没有找到则返回 null
-        return news;
+        return count;
+    }
+
+    @Override
+    public List<News> findByColumn(int pagesize, int offset, String column) throws Exception {
+        List<News> newsList = new ArrayList<>();
+        offset = (offset-1)*pagesize;
+        String sql = "SELECT  id, title, date, article_column, author,brief,brief_img  FROM news WHERE article_column = ? LIMIT ? OFFSET ?";
+
+        try (Connection conn = JDBCUtils.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, column);
+            pstmt.setInt(2, pagesize);
+            pstmt.setInt(3, offset);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    News news = new News();
+                    news.setId(rs.getInt(1));
+                    news.setTitle(rs.getString(2));
+                    news.setDate(rs.getDate(3));
+                    news.setArticle_column(rs.getString(4));
+                    news.setAuthor(rs.getString(5));
+                    news.setBrief(rs.getString(6));
+                    news.setBriefImg(rs.getString(7));
+                    newsList.add(news);
+                }
+            }
+        } catch (SQLException e) {
+            // 这里可以添加日志记录，或者根据需要进行其他异常处理
+            throw new RuntimeException("查询新闻失败，请检查输入参数", e);
+        }
+
+        return newsList;
     }
 }

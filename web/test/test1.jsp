@@ -8,6 +8,8 @@
   <script src="../layui/layui.js"></script>
   <script src="../js/jquery-3.5.1.min.js"></script>
   <script src="../js/wangEditor/index.js"></script>
+  <link rel="stylesheet" href="../style/editor/view.css">
+  <link rel="stylesheet" href="../style/editor/normal.css">
 </head>
 <body>
 <style>
@@ -82,6 +84,21 @@
           </select>
         </div>
       </div>
+
+    <!-- 缩略图 -->
+    <button type="button" class="layui-btn" id="ID-upload-img-btn" style="margin-left: 50px">
+      <i class="layui-icon layui-icon-upload"></i> 缩略图
+    </button>
+    <!-- 回显 -->
+    <div style="width: 132px;">
+      <div class="layui-upload-list">
+        <img class="layui-upload-img" id="ID-upload-demo-img" style="width: 100%; height: 92px;">
+        <div id="ID-upload-demo-text"></div>
+      </div>
+      <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="filter-demo">
+        <div class="layui-progress-bar" lay-percent=""></div>
+      </div>
+    </div>
 
       <!-- 内容 -->
       <div class="layui-form-item layui-form-text">
@@ -168,6 +185,48 @@
 
   layui.use('form', function(){
     let form = layui.form;
+    let upload = layui.upload;
+    let layer = layui.layer;
+    let element = layui.element;
+    let $ = layui.$;
+    let uploadInst = upload.render({
+      elem: '#ID-upload-img-btn',
+      url: '/uploadImg',
+      size: 10240, // 限制文件大小，10mb
+      before: function(obj){
+        // 预读本地文件示例，不支持ie8
+        obj.preview(function(index, file, result){
+          $('#ID-upload-img-btn').attr('src', result); // 图片链接（base64）
+        });
+
+        element.progress('filter-demo', '0%'); // 进度条复位
+        layer.msg('图片上传中', {icon: 16, time: 0});
+      },
+      done: function(res){
+        // 若上传失败
+        if(res.code > 0){
+          return layer.msg('上传失败');
+        }
+        // 上传成功的一些操作
+        // …
+        $('#ID-upload-img-btn').html(''); // 置空上传失败的状态
+      },
+      error: function(){
+        // 演示失败状态，并实现重传
+        let  demoText = $('#ID-upload-demo-text');
+        demoText.html('<span style="color: #FF5722;">图片上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        demoText.find('.demo-reload').on('click', function(){
+          uploadInst.upload();
+        });
+      },
+      // 进度条
+      progress: function(n, elem, e){
+        element.progress('filter-demo', n + '%');
+        if(n == 100){
+          layer.msg('上传完毕', {icon: 1});
+        }
+      }
+    });
     // 监听表单提交
     form.on('submit(submit)', function(data){
       let dataNews = {};

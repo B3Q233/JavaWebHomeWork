@@ -71,9 +71,11 @@
 </body>
 <script>
 
-    function getData(limit) {
+    function getNewsList(column,pagesize,offset) {
         let data = {}
-        data["limit"] = limit;
+        data["column"]=column;
+        data["pagesize"] = pagesize;
+        data["offset"] = offset;
         $.ajax({
             type: "post",
             url: "/getNewsList",
@@ -90,45 +92,41 @@
                 }
             },
             success: function (data) {
-                let relString="";
-                for (let i = 14;i<=14+3;i++){
-                    relString+=data[i];
-                }
-                drawCaptcha(relString);
+                console.log(data);
+                appendText(data);
             }
         });
     }
 
-    function appendText(){
-        let newsA = $("<a></a>").attr("href","#").addClass("game-brief");
-        let newsDiv = $("<div></div>").addClass("brief-show");
-        let newsText = $("<div></div>").addClass("text");
-        let gameName = $("<h3></h3>").addClass("game-title").text("游戏名称");
-        let gameTitle = $("<h1></h1>").text("游戏标题");
-        let gameTime = $("<h3></h3>").addClass("time").text("游戏时间");
-        let gameBrief = $("<textarea></textarea>").addClass("content-brief").val("游戏简介");
-        let gameImg = $("<div></div>").addClass("img");
-        let img = $("<img>").attr("src", "image/game_pic/video_3.png");
+    function appendText(data){
+        for (let i = 0;i<data["data"].length;i++){
+            let newsA = $("<a></a>").attr("href","#").addClass("game-brief");
+            let newsDiv = $("<div></div>").addClass("brief-show");
+            let newsText = $("<div></div>").addClass("text");
+            let gameName = $("<h3></h3>").addClass("game-title").text("新闻名称");
+            let gameTitle = $("<h1></h1>").text("新闻标题");
+            let gameTime = $("<h3></h3>").addClass("time").text("新闻时间");
+            let gameBrief = $("<textarea></textarea>").addClass("content-brief").val("新闻简介");
+            let gameImg = $("<div></div>").addClass("img");
+            let img = $("<img>").attr("src", "image/game_pic/video_3.png");
 
-        newsText.append(gameName);
-        newsText.append(gameTitle);
-        newsText.append(gameTime);
-        newsText.append(gameBrief);
+            newsText.append(gameName);
+            newsText.append(gameTitle);
+            newsText.append(gameTime);
+            newsText.append(gameBrief);
 
-        gameImg.append(img);
+            gameImg.append(img);
 
-        newsDiv.append(newsText);
-        newsDiv.append(gameImg);
+            newsDiv.append(newsText);
+            newsDiv.append(gameImg);
 
-        newsA.append(newsDiv);
+            newsA.append(newsDiv);
 
-        $(".content").append(newsA);
+            $(".content").append(newsA);
+        }
     }
     $(document).ready(function(){
-        for (let i = 0;i<1;i++){
-            appendText();
-            getData(10);
-        }
+        getNewsList("国内",10,1)
     });
 </script>
 </html>

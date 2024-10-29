@@ -53,7 +53,6 @@
       </div>
     </div>
   </div>
-
   <!-- 登录 -->
   <div class="main_login">
     <div>

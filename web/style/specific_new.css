@@ -1,14 +1,3 @@
-@font-face {
-      font-family: 'icomoon';
-      src: url('fonts/icomoon.eot?mmmx34');
-      src: url('fonts/icomoon.eot?mmmx34#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.ttf?mmmx34') format('truetype'),
-        url('fonts/icomoon.woff?mmmx34') format('woff'),
-        url('fonts/icomoon.svg?mmmx34#icomoon') format('svg');
-      font-weight: normal;
-      font-style: normal;
-      font-display: block;
-    }
 
     * {
       margin: 0;
@@ -50,206 +39,35 @@
       /* 设置背景颜色，背景图加载过程中会显示背景色 */
     }
 
-    li {
-      display: inline-block;
-      list-style: none;
+    .content{
+        margin: 50px auto;
+        padding: 20px 20px;
+        width: 1200px;
+        background-color: rgb(48, 54, 65);
+        color: rgb(207, 210, 211);
     }
 
-    a {
-      display: inline-block;
-      text-decoration: none;
-      color: rgb(220, 222, 223);
+    .content .article .title{
+        color: rgb(234, 234, 235);
     }
 
-    input {
-      outline: none;
-      border: 1px solid;
-      border-radius: 3px;
+    .content .article h1,h2,h3,h4{
+        color: rgb(255, 255, 255);
     }
 
-    button {
-      cursor: pointer;
-      border: 1px solid;
-      border-radius: 3px;
+    .content .article span{
+        font-size: 13px;
+        text-align: left;
+        display: inline;
     }
 
-    span {
-      display: inline-block;
-      text-align: center;
+    .about-news{
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    img{
-      width: 100%;
-      height: 100%;
-    }
-
-    textarea{
-      padding-top: 10px;
-			pointer-events: none;
-      background-color: transparent;
-      overflow: hidden;
-      border:none;
-      outline:none;
-      resize:none;
-      width: 90%;
-      height: 200px;
-      color: rgb(99,99,99);
-      font-size: 25px;
-      font-weight: 700;
-    }
-
-    .clearfix:after,.clearfix:before{
-        content: "";
-        display: block;
-    }
-    .clearfix:after{
-        clear: both;
-    }
-
-    .font_download {
-      font-family: 'icomoon';
+    .about-news span{
+        color: rgb(143, 152, 160);
     }
 
 
-    .responsive_header {
-      background-color: rgb(23, 29, 37);
-      width: 100%;
-      height: 123px;
-    }
-
-    .responsive_header .active {
-      color: rgb(26, 159, 255);
-      border-bottom: 5px solid rgb(26, 159, 255);
-      font-size: 20px;
-    }
-
-    .nav .p {
-      display: inline-block;
-      inline-size: none;
-    }
-
-    .header_conten .header_logo img {
-      width: 100%;
-      height: 100%;
-    }
-
-    .responsive_header .header_conten {
-      background-color: rgb(23, 29, 37);
-      width: 1247px;
-      height: 123px;
-      margin: 0px auto;
-      padding: 0 100px;
-    }
-
-
-    .responsive_header .header_conten .header_logo {
-      float: left;
-      width: 216px;
-      height: 60px;
-      margin-top: 38px;
-      background-color: transparent;
-    }
-
-    .nav ul li {
-      padding-left: 16px;
-      text-align: center;
-    }
-
-    .responsive_header .nav {
-      float: left;
-      width: 218px;
-      height: 29px;
-      margin-top: 59px;
-      margin-left: 50px;
-      text-align: center;
-      font-size: 15px;
-      background-color: transparent;
-    }
-
-    .responsive_header .nav a {
-      color: rgb(220, 222, 223);
-    }
-
-    .header_conten .globle_action_meau {
-      float: right;
-      padding-top: 0px;
-      margin-top: 15px;
-      font-size: 13px;
-      color: rgb(202, 199, 196);
-    }
-
-    .header_conten .header_install {
-      width: 114px;
-      height: 30px;
-      line-height: 31px;
-      background-color: rgb(92, 126, 16);
-    }
-
-    .responsive_header .header_conten .header_install span {
-      display: inline-block;
-      left: 50%-36px;
-      top: 50%-25px;
-      margin-right: 2px;
-    }
-
-
-    .footer{
-      width: 100%;
-      background-color: rgb(23, 29, 37);
-    }
-    
-    .footer .main_conten{
-      width: 1000px;
-      margin: 0 auto;
-      margin-top: 100px;
-      height: 100px;
-      padding: 10px;
-    }
-    
-    .footer  .bottom_text,
-    .footer .top_text{
-      padding: 10px;
-      border-top: 1px solid rgb(54, 60, 68);
-      border-bottom: 1px solid rgb(54, 60, 68);
-      color: rgb(158, 168, 181);
-      padding-bottom: 3px;
-    }
-
-    .main_conten_news{
-      width: 1300px;
-      margin: 0 auto;
-      background-color: rgb(55, 55, 60);
-      padding-left: 20px;
-    }
-
-    .main_conten_news .left{
-      width: 60%;
-      padding: 10px;
-      float: left;
-    }
-
-    .relative a{
-      color: rgb(143, 152, 160);
-    }
-
-    .relative h1{
-      color: rgb(234, 234, 235);
-      font-weight: 300;
-    }
-
-    .relative .title{
-      font-size: 30px;
-      font-weight: 500;
-    }
-
-    .relative p{
-      color: #fff;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-     .main_conten .right{
-      width: 40%;
-      float: right;
-      border-right: 10px solid rgb(23, 29, 37);
-     }

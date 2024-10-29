@@ -65,6 +65,28 @@ public class NewsService implements NewsDao {
     }
 
     @Override
+    public int getSizeByColumn(String column) throws Exception {
+        int size = 0;
+        try {
+            size = this.dao.getSizeByColumn(column);
+        }catch (Exception e){
+            throw e;
+        }
+        return size;
+    }
+
+    @Override
+    public List<News> findByColumn(String column) throws Exception {
+        List<News> all = null;
+        try{
+            all = this.dao.findByColumn(column);
+        }catch (Exception e){
+            throw e;
+        }
+        return all;
+    }
+
+    @Override
     public News findNews(int id) throws Exception {
         News news = null;
         try {
@@ -73,5 +95,16 @@ public class NewsService implements NewsDao {
             throw e;
         }
         return news;
+    }
+
+    @Override
+    public List<News> findByColumn(int pagesize, int offset, String column) throws Exception {
+        List<News> all = null;
+        try{
+            all = this.dao.findByColumn(pagesize,offset,column);
+        }catch (Exception e){
+            throw e;
+        }
+        return all;
     }
 }

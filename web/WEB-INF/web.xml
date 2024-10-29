@@ -42,6 +42,10 @@
         <servlet-name>addNews</servlet-name>
         <servlet-class>com.xxx.servlet.addNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getNews</servlet-name>
+        <servlet-class>com.xxx.servlet.getSpecificNews</servlet-class>
+    </servlet>
 
     <!--servlet 映射-->
 
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>addNews</servlet-name>
         <url-pattern>/addNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getNews</servlet-name>
+        <url-pattern>/getNews</url-pattern>
     </servlet-mapping>
 
     <!--过滤器配置-->

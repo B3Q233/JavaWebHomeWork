@@ -33,7 +33,30 @@ public class News {
     // 日期
     private Date date;
 
+    // 所属栏目
     private String article_column;
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public String getBriefImg() {
+        return briefImg;
+    }
+
+    public void setBriefImg(String briefImg) {
+        this.briefImg = briefImg;
+    }
+
+    // 新闻简介
+    private String brief;
+
+    // 新闻简介缩略图
+    private String briefImg;
 
     public String getTitle() {
         return title;
