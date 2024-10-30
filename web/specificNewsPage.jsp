@@ -59,7 +59,7 @@
 <div class="content editor-content-view" style="min-height: 900px">
 
     <div class="top">
-        <span id = "id" style="display: none">${requestScope.id=10}</span>
+        <span id = "id" style="display: none">${requestScope.id}</span>
         <h1 class="title" id = "title">
         </h1>
         <div class="about-news">
@@ -85,7 +85,7 @@
         document.title = content["title"];
         $("#author").text("作者："+content["author"]);
         $("#time").text("发布时间："+content["date"]);
-        $("#article_column").text("来源："+content["article_column"]+"栏目");
+        $("#article_column").text("来源："+content["articleColumn"]+"栏目");
         $("#text").html(content["content"]);
     }
 

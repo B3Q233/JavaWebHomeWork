@@ -51,7 +51,7 @@ public class NewsDaoImpl implements NewsDao {
 
         try (Connection conn = JDBCUtils.getConnection()) {
             // 查询 sql 字符串
-            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where title = ? and article_column = ?";
+            String sql = "select id, title, content, date, articleColumn, author,brief,briefImg from news where title = ? and articleColumn = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, title);
             pstmt.setString(2, column);
@@ -63,7 +63,7 @@ public class NewsDaoImpl implements NewsDao {
                     news.setTitle(rs.getString(2));
                     news.setContent(rs.getString(3));
                     news.setDate(rs.getDate(4));
-                    news.setArticle_column(rs.getString(5));
+                    news.setArticleColumn(rs.getString(5));
                     news.setAuthor(rs.getString(6));
                     news.setBrief(rs.getString(7));
                     news.setBriefImg(rs.getString(8));
@@ -84,7 +84,7 @@ public class NewsDaoImpl implements NewsDao {
 
         try (Connection conn = JDBCUtils.getConnection()) {
             // 查询 sql 字符串
-            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where id = ?";
+            String sql = "select id, title, content, date, articleColumn, author,brief,briefImg from news where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
 
@@ -95,7 +95,7 @@ public class NewsDaoImpl implements NewsDao {
                     news.setTitle(rs.getString(2));
                     news.setContent(rs.getString(3));
                     news.setDate(rs.getDate(4));
-                    news.setArticle_column(rs.getString(5));
+                    news.setArticleColumn(rs.getString(5));
                     news.setAuthor(rs.getString(6));
                     news.setBrief(rs.getString(7));
                     news.setBriefImg(rs.getString(8));
@@ -114,7 +114,7 @@ public class NewsDaoImpl implements NewsDao {
     public List<News> findByColumn(String column) throws Exception {
         List<News> list = new ArrayList<News>();
         try (Connection conn = JDBCUtils.getConnection()) {
-            String sql = "select id, title, content, date, article_column, author,brief,brief_img from news where article_column = ?";
+            String sql = "select id, title, content, date, articleColumn, author,brief,briefImg from news where articleColumn = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, column);
 
@@ -125,7 +125,7 @@ public class NewsDaoImpl implements NewsDao {
                     news.setTitle(rs.getString(2));
                     news.setContent(rs.getString(3));
                     news.setDate(rs.getDate(4));
-                    news.setArticle_column(rs.getString(5));
+                    news.setArticleColumn(rs.getString(5));
                     news.setAuthor(rs.getString(6));
                     news.setBrief(rs.getString(7));
                     news.setBriefImg(rs.getString(8));
@@ -142,7 +142,7 @@ public class NewsDaoImpl implements NewsDao {
     @Override
     public int getSizeByColumn(String column) throws Exception {
         int count = 0;
-        String sql = "SELECT COUNT(*) FROM news WHERE article_column = ?";
+        String sql = "SELECT COUNT(*) FROM news WHERE articleColumn = ?";
 
         try (Connection conn = JDBCUtils.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -167,7 +167,7 @@ public class NewsDaoImpl implements NewsDao {
     public List<News> findByColumn(int pagesize, int offset, String column) throws Exception {
         List<News> newsList = new ArrayList<>();
         offset = (offset-1)*pagesize;
-        String sql = "SELECT  id, title, date, article_column, author,brief,brief_img  FROM news WHERE article_column = ? LIMIT ? OFFSET ?";
+        String sql = "SELECT  id, title, date, articleColumn, author,brief,briefImg  FROM news WHERE articleColumn = ? LIMIT ? OFFSET ?";
 
         try (Connection conn = JDBCUtils.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -182,7 +182,7 @@ public class NewsDaoImpl implements NewsDao {
                     news.setId(rs.getInt(1));
                     news.setTitle(rs.getString(2));
                     news.setDate(rs.getDate(3));
-                    news.setArticle_column(rs.getString(4));
+                    news.setArticleColumn(rs.getString(4));
                     news.setAuthor(rs.getString(5));
                     news.setBrief(rs.getString(6));
                     news.setBriefImg(rs.getString(7));

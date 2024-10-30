@@ -1,5 +1,7 @@
 package com.b3qTest.tool;
 
+import com.alibaba.fastjson2.JSONObject;
+
 import java.sql.Date;
 
 /**
@@ -15,5 +17,18 @@ public class ComTool {
     public static Date getNowDate(){
         Date now = new Date(System.currentTimeMillis());
         return now;
+    }
+
+    /**
+     *  用于生成Ajax返回json
+     * @param statusCode 返回状态码
+     * @param description 对返回的描述
+     * @return 一个json
+     */
+    public static JSONObject setRetJson(int statusCode,String description){
+        JSONObject reJson = new JSONObject();
+        reJson.put("status",statusCode);
+        reJson.put("data",description);
+        return reJson;
     }
 }

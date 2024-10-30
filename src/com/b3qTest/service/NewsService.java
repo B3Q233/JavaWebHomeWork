@@ -22,8 +22,10 @@ public class NewsService implements NewsDao {
     public boolean insert(News news) throws Exception {
         boolean flag = false;
         try {
-            if(findNews(news.getTitle(),news.getArticle_column())==null){
+            if(findNews(news.getTitle(),news.getArticleColumn())==null){
                 flag = this.dao.insert(news);
+            }else{
+                return  false;
             }
         }catch (Exception e){
             throw e;

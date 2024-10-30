@@ -1,8 +1,10 @@
 package com.xxx.servlet;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.b3qTest.factory.DAOFactory;
 import com.b3qTest.pojo.News;
 import com.b3qTest.tool.ComTool;
+import com.b3qTest.tool.DBTool;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,19 +25,31 @@ public class addNews extends HttpServlet {
         String author = req.getParameter("author");
         String title = req.getParameter("title");
         String column = req.getParameter("column");
+        String brief = req.getParameter("brief");
+        String briefImg = req.getParameter("briefImg");
         Date date = ComTool.getNowDate();
         News news = new News();
         news.setAuthor(author);
-        news.setArticle_column(column);
+        news.setArticleColumn(column);
         news.setContent(content);
         news.setTitle(title);
         news.setDate(date);
+        news.setBriefImg(briefImg);
+        news.setBrief(brief);
         boolean flag = false;
+        JSONObject reJson = null;
         try {
             flag = DAOFactory.getIEmpNewsDAOInstance().insert(news);
+            if (!flag){
+                reJson = ComTool.setRetJson(0,"当前栏目文章已经存在，请勿重复提交");
+            }else{
+                reJson = ComTool.setRetJson(1,"文章提交成功");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(flag);
+        resp.setCharacterEncoding("utf-8");
+        resp.setContentType("application/json;charset=utf-8");
+        resp.getWriter().write(String.valueOf(reJson));
     }
 }

@@ -33,8 +33,16 @@ public class News {
     // 日期
     private Date date;
 
+    public String getArticleColumn() {
+        return articleColumn;
+    }
+
+    public void setArticleColumn(String articleColumn) {
+        this.articleColumn = articleColumn;
+    }
+
     // 所属栏目
-    private String article_column;
+    private String articleColumn;
 
     public String getBrief() {
         return brief;
@@ -90,11 +98,5 @@ public class News {
         this.date = date;
     }
 
-    public String getArticle_column() {
-        return article_column;
-    }
 
-    public void setArticle_column(String article_column) {
-        this.article_column = article_column;
-    }
 }

@@ -50,22 +50,6 @@
     </div>
 </div>
 <div class="content">
-    <a href="#" class="game-brief">
-    <div class="brief-show">
-            <div class="text">
-                <h3 class="game-title">0721</h3>
-                <h1>111111111111111111111111111111</h1>
-                <h3 class="time">发布时间： 2024-10-03  作者：b3q</h3>
-                <textarea class="content-brief">近期我们关注到超越者们在社区对于温控塔玩法的相关反馈，对此我们梳理了相关问题与各位进行同步和答疑，如您有新版本的其他问题，可以通过反馈平台和客服和我们进行反馈。
-1.温控塔的解锁条件温控塔的解锁条件温控塔的解锁条件温控塔的解锁条件
-当赛季到达第二阶段【炽尘弥散】后，超越者可通过模因-建造解锁温控塔。
-                </textarea>
-            </div>
-            <div class="img">
-                <img src="image/game_pic/video_3.png">
-            </div>
-    </div>
-    </a>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
@@ -81,7 +65,7 @@
             url: "/getNewsList",
             //data:定义数据,以键值对的方式放在大括号里
             data: data,
-            dataType: 'text',
+            dataType: 'json',
             //statusCode:状态码，用于定义执行时提示的状态
             statusCode: {
                 404: function () {
@@ -100,25 +84,25 @@
 
     function appendText(data){
         for (let i = 0;i<data["data"].length;i++){
-            let newsA = $("<a></a>").attr("href","#").addClass("game-brief");
+            let tmp = data["data"][i];
+            console.log(tmp);
+            let newsA = $("<a></a>").attr("href","/getNews?id="+tmp["id"]).addClass("news-brief");
             let newsDiv = $("<div></div>").addClass("brief-show");
             let newsText = $("<div></div>").addClass("text");
-            let gameName = $("<h3></h3>").addClass("game-title").text("新闻名称");
-            let gameTitle = $("<h1></h1>").text("新闻标题");
-            let gameTime = $("<h3></h3>").addClass("time").text("新闻时间");
-            let gameBrief = $("<textarea></textarea>").addClass("content-brief").val("新闻简介");
-            let gameImg = $("<div></div>").addClass("img");
-            let img = $("<img>").attr("src", "image/game_pic/video_3.png");
+            let newsTitle = $("<h1></h1>").text(tmp["title"]);
+            let newsTime = $("<h3></h3>").addClass("time").text("发布时间："+tmp["date"]+" 作者："+tmp["author"]);
+            let newsBrief = $("<textarea></textarea>").addClass("content-brief").val(tmp["brief"]);
+            let newsImg = $("<div></div>").addClass("img");
+            let img = $("<img>").attr("src", tmp["briefImg"]);
 
-            newsText.append(gameName);
-            newsText.append(gameTitle);
-            newsText.append(gameTime);
-            newsText.append(gameBrief);
+            newsText.append(newsTitle);
+            newsText.append(newsTime);
+            newsText.append(newsBrief);
 
-            gameImg.append(img);
+            newsImg.append(img);
 
             newsDiv.append(newsText);
-            newsDiv.append(gameImg);
+            newsDiv.append(newsImg);
 
             newsA.append(newsDiv);
 
@@ -126,7 +110,7 @@
         }
     }
     $(document).ready(function(){
-        getNewsList("国内",10,1)
+        getNewsList("国内",20,1)
     });
 </script>
 </html>
