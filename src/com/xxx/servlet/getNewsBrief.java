@@ -41,7 +41,6 @@ public class getNewsBrief extends HttpServlet {
         try {
             List<News> newsList = DAOFactory.getIEmpNewsDAOInstance().findByColumn(pagesize,offset,column);
             reJson = getNewsList(newsList,DAOFactory.getIEmpNewsDAOInstance().getSizeByColumn(column));
-            System.out.println(reJson);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

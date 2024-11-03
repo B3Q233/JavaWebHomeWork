@@ -50,7 +50,7 @@ public class JDBCUtils {
 
     /**
      * 从连接池中获取一个数据库的连接
-     * @return
+     * @return Connection 对象
      * @throws SQLException
      */
     public static Connection getConnection() throws SQLException {

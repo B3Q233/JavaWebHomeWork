@@ -46,6 +46,10 @@
         <servlet-name>getNews</servlet-name>
         <servlet-class>com.xxx.servlet.getSpecificNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateSiteInformation</servlet-name>
+        <servlet-class>com.xxx.servlet.updateSiteInformation</servlet-class>
+    </servlet>
 
     <!--servlet 映射-->
 
@@ -88,6 +92,10 @@
     <servlet-mapping>
         <servlet-name>getNews</servlet-name>
         <url-pattern>/getNews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSiteInformation</servlet-name>
+        <url-pattern>/updateSiteInform</url-pattern>
     </servlet-mapping>
 
     <!--过滤器配置-->

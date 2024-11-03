@@ -1,9 +1,10 @@
 package com.b3qTest.factory;
 
 import com.b3qTest.dao.NewsDao;
+import com.b3qTest.dao.SiteInfoDao;
 import com.b3qTest.dao.UserDao;
-import com.b3qTest.pojo.News;
 import com.b3qTest.service.NewsService;
+import com.b3qTest.service.SiteInfoService;
 import com.b3qTest.service.UserService;
 
 /**
@@ -18,5 +19,9 @@ public class DAOFactory {
 
     public static NewsDao getIEmpNewsDAOInstance() throws Exception{
         return new NewsService();
+    }
+
+    public static SiteInfoDao getIEmpSiteInfoDao() throws Exception{
+        return new SiteInfoService();
     }
 }

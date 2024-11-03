@@ -35,7 +35,6 @@ public class DBTool {
         Field[] field = c.getDeclaredFields();
 
         for (int i = 0; i < field.length; i++) {        //遍历属性构造SQL语句
-
             if (i != field.length - 1) {
                 sb1.append(field[i].getName()).append(",");
                 sb2.append("?,");
@@ -132,6 +131,76 @@ public class DBTool {
             throw new SQLException("Error querying data", e);
         }
         return resultList;
+    }
+
+
+    /**
+     * 反射优化数据更新，传入表对应的JAVABean对象，根据对象动态更新对应的表中所有的数据
+     *
+     * @param obj  JAVABean 对象
+     * @param conn 数据库连接对象
+     * @return List<obj> 传入的对象类型的list
+     * @throws SQLException
+     */
+    public static boolean update(Object obj, Connection conn,String primaryKey) throws SQLException {
+        boolean flag = false;
+        Class<?> clazz = obj.getClass();
+        String tableName = clazz.getSimpleName().toLowerCase(); // 类名和表名相同
+
+        // 构建更新语句
+        StringBuilder sql = new StringBuilder("UPDATE ").append(tableName).append(" SET ");
+        StringBuilder whereClause = new StringBuilder(" WHERE id = ?"); // 字段名为 "id"
+        PreparedStatement pstmt = null;
+
+        try{
+            Field[] fields = clazz.getDeclaredFields();
+            Object primaryKeyValue = null;
+
+            for (int i = 0; i < fields.length; i++) {
+                Field field = fields[i];
+                field.setAccessible(true);
+                String fieldName = field.getName();
+                Object value = field.get(obj);
+
+                // 如果是主键字段，则构建 WHERE 子句
+                if (fieldName.equalsIgnoreCase(primaryKey)) {
+                    primaryKeyValue = value;
+                    continue;
+                }
+
+                sql.append(fieldName).append(" = ?");
+                if (i < fields.length - 1) {
+                    sql.append(", ");
+                }
+            }
+
+            sql.append(whereClause);
+            pstmt = conn.prepareStatement(sql.toString());
+            int index = 1;
+            for (Field field : fields) {
+                if (!field.getName().equalsIgnoreCase(primaryKey)) {
+                    field.setAccessible(true);
+                    pstmt.setObject(index++, field.get(obj));
+                }
+            }
+
+            // 设置主键值
+            if (primaryKeyValue != null) {
+                pstmt.setObject(index, primaryKeyValue);
+            } else {
+                throw new SQLException("Primary key value not found");
+            }
+            int affectedRows = pstmt.executeUpdate();
+            flag = affectedRows > 0;
+        } catch (IllegalAccessException e) {
+            throw new SQLException("Error accessing field value", e);
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        }
+
+        return flag;
     }
 
 }

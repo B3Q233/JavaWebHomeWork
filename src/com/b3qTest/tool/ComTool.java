@@ -22,7 +22,7 @@ public class ComTool {
     /**
      *  用于生成Ajax返回json
      * @param statusCode 返回状态码
-     * @param description 对返回的描述
+     * @param description 对 json 的描述
      * @return 一个json
      */
     public static JSONObject setRetJson(int statusCode,String description){
