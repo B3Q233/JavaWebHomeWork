@@ -85,7 +85,6 @@
     function appendText(data){
         for (let i = 0;i<data["data"].length;i++){
             let tmp = data["data"][i];
-            console.log(tmp);
             let newsA = $("<a></a>").attr("href","/getNews?id="+tmp["id"]).addClass("news-brief");
             let newsDiv = $("<div></div>").addClass("brief-show");
             let newsText = $("<div></div>").addClass("text");
@@ -110,7 +109,7 @@
         }
     }
     $(document).ready(function(){
-        getNewsList("国内",20,1)
+        getNewsList("国际",20,1)
     });
 </script>
 </html>

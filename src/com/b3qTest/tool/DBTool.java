@@ -103,7 +103,6 @@ public class DBTool {
 
     /**
      * 反射优化数据查询，传入表对应的JAVABean对象，根据对象动态查询对应的表中所有的数据
-     *
      * @param obj  JAVABean 对象
      * @param conn 数据库连接对象
      * @return List<obj> 传入的对象类型的list
@@ -136,7 +135,6 @@ public class DBTool {
 
     /**
      * 反射优化数据更新，传入表对应的JAVABean对象，根据对象动态更新对应的表中所有的数据
-     *
      * @param obj  JAVABean 对象
      * @param conn 数据库连接对象
      * @return List<obj> 传入的对象类型的list

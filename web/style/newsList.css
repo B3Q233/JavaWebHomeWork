@@ -9,6 +9,18 @@ body{
     min-height: 600px;
 }
 
+.content .list-news{
+    width: 900px;
+    height: 200px;
+    margin: 0 auto;
+}
+.column{
+    width: 950px;
+    height: 20px;
+    margin: 20px auto;
+    margin-bottom: -30px;
+}
+
 .content a{
     display: block;
 }

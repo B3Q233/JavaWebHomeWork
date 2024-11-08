@@ -43,10 +43,7 @@ public class UserDaoImpl implements UserDao{
             if(user.getBirthday()!=null){
                 sqlDate = new Date(user.getBirthday().getTime());
             }
-            System.out.println(sqlDate);
             pstmt.setDate(5, sqlDate);
-
-
 
             // 添加邮箱
             pstmt.setString(6,user.getEmail());

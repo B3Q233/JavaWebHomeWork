@@ -14,8 +14,8 @@
         }
         .layui-container {
             width: 600px;
-            margin: 30px auto;
-            padding: 15px;
+            margin: 30px ;
+            padding: 10px;
         }
         .layui-input-block{
             display: flex;
@@ -27,6 +27,28 @@
     </style>
 </head>
 <body>
+<div style="padding:15px;margin-bottom: -50px">
+    <br><br>
+    <h1 style="font-size: 2em">网站信息设置</h1>
+    <br><br>
+
+    <blockquote class="layui-elem-quote layui-text">
+        <ul>
+            <li>
+                设置网站名称，简介，域名，关键词和logo
+            </li>
+        </ul>
+    </blockquote>
+
+    <br><br><br>
+
+    <table class="layui-hide" id="test"></table>
+
+    <div class="layui-card layui-panel">
+
+    </div>
+    <br><br>
+</div>
 
 <div class="layui-container">
     <form class="layui-form" >
@@ -48,7 +70,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">域名(地址)*</label>
             <div class="layui-input-block">
-                <input id = "siteDomain" type="text" name="site_domain" required lay-verify="required" placeholder="请输入站点域名" autocomplete="off" class="layui-input">
+                <input id = "siteDomain" type="text" name="site_domain" required lay-verify="required" placeholder="请输入站点域名，以http或https开始" autocomplete="off" class="layui-input">
             </div>
         </div>
         <!-- 站点关键词 -->
@@ -84,7 +106,7 @@
 <script src="layui/layui.js"></script>
 <script>
 
-    function sendAjax(data){
+    function updateInfo(data){
         $.ajax({
             type: "post",
             url: '/updateSiteInform',
@@ -99,12 +121,49 @@
                 }
             },
             success: function (data) {
-                console.log(data);
-                setArticle(data);
+                console.log(data["data"])
+                if(data["status"]!=0){
+                    layer.open({
+                        type: 1,
+                        content:`<div style="padding: 16px;text-align: center">域名格式错误，请重新输入</div>`,
+                        title: "警告",
+                        area:["250px","160px"]
+                    })
+                }else if(data["status"]==0){
+                    layer.open({
+                        type: 1,
+                        content:`<div style="padding: 16px;text-align: center">数据更新成功</div>`,
+                        title: "提示",
+                        area:["250px","160px"]
+                    })
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("请求失败: " + textStatus + ", 错误信息: " + errorThrown);
+
             }
+        });
+    }
+    function getInfo() {
+        $.ajax({
+            type: "get",
+            url: '/updateSiteInform',
+            data: "get",
+            dataType: 'json',
+            statusCode: {
+                404: function () {
+                    alert("404");
+                },
+                500: function () {
+                    alert("500");
+                }
+            },
+            success: function (data) {
+              $("#siteName").val(data["siteName"]);
+              $("#siteDescription").val(data["siteDescription"]);
+              $("#siteDomain").val(data["siteDomain"]);
+              $("#siteKeywords").val(data["siteKeyWords"]);
+              $("#upload-show-img").attr("src",data["logoImg"]);
+            },
         });
     }
    layui.use('form', function(){
@@ -122,7 +181,7 @@
        let uploadInst = upload.render({
            elem: '#upload-img-btn',
            url: '/uploadImg',
-           size: 1024*5, // 限制文件大小
+           size: 500, // 限制文件大小
            before: function (obj) {
                obj.preview(function (index, file, result) {
                    $('#upload-show-img').attr('src', result); // 图片链接（base64）
@@ -139,7 +198,6 @@
                    uploadInst.upload();
                });
            },
-           // 进度条
            progress: function (n, elem, e) {
                element.progress('filter-demo', n + '%');
                if (n == 100) {
@@ -150,13 +208,15 @@
 
        form.on('submit(submit)', function(data){
            let formData = data.field; // 获取表单数据
-           formData["siteImg"] = $('#upload-show-img').attr("src"); // 添加图片字段
-           console.log(formData);
-           sendAjax(formData);
+           formData["file"] = $('#upload-show-img').attr("src"); // 添加图片字段
+           updateInfo(formData);
            return false; // 阻止表单跳转
        });
 
    });
+    $(document).ready(function(){
+        getInfo()
+    });
 </script>
 </body>
 </html>

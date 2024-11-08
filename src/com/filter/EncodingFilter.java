@@ -17,7 +17,6 @@ import java.util.Properties;
 )
 public class EncodingFilter implements Filter {
 
-//    private  static org.apache.log4j.Logger logger = Logger.getLogger("MyLogger");
     private String encoding = "UTF-8";
     private String filterName = "";
 
@@ -34,7 +33,6 @@ public class EncodingFilter implements Filter {
         if(encoding==null||"".equals(encoding)){
             encoding="UTF-8";
         }
-//        logger.debug("获得编码值");
     }
 
     @Override
@@ -42,13 +40,10 @@ public class EncodingFilter implements Filter {
         servletRequest.setCharacterEncoding(encoding);
         servletResponse.setCharacterEncoding(encoding);
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-//        logger.debug("请求被"+filterName+"过滤");
         filterChain.doFilter(req,servletResponse);
-//        logger.debug("响应被"+filterName+"过滤");
     }
 
     @Override
     public void destroy() {
-//        logger.debug("请求销毁");
     }
 }

@@ -26,6 +26,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * ok
  * 网站详细相关功能，测试用
  * ok
+ * 域名正则表达式测试
+ * ok
  */
 
 public class test {
@@ -123,7 +125,18 @@ public class test {
 //        System.out.println(DBTool.update(siteInfo,JDBCUtils.getConnection(),"id"));
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().update(siteInfo,"id"));
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().queryAll(siteInfo));
+//        域名正则表达式测试
+//        System.out.println(ComTool.checkDomain("https://regex101.com/"));
 
+//        SiteInfo siteInfo = new SiteInfo();
+//        siteInfo.setId(1);
+//        siteInfo.setSiteDomain("https://1s14514.com");
+//        siteInfo.setSiteName("mxxy");
+//        siteInfo.setLogoImg("1145113131.png");
+//        siteInfo.setSiteKeyWords("rengewdad,1312");
+//        siteInfo.setSiteDescription("2313asdada");
+//        System.out.println(DAOFactory.getIEmpSiteInfoDao().update(siteInfo,"id"));
+//        System.out.println(DAOFactory.getIEmpSiteInfoDao().queryAll(siteInfo));
     }
 
 }

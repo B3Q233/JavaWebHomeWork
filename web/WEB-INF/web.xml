@@ -32,7 +32,7 @@
     </servlet>
     <servlet>
         <servlet-name>getNewsList</servlet-name>
-        <servlet-class>com.xxx.servlet.getNewsBrief</servlet-class>
+        <servlet-class>com.xxx.servlet.newsBrief</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>uploadImg</servlet-name>

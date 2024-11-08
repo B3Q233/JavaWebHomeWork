@@ -29,5 +29,11 @@ public interface SiteInfoDao {
      */
     public boolean update(SiteInfo siteInfo,String primaryKey) throws Exception;
 
-
+    /**
+     *  网站详情插入函数，插入数据到对应数据库
+     * @param siteInfo JAVABean 对象
+     * @return 一个 布尔值 表示是否插入成功
+     * @throws Exception
+     */
+    public boolean insert(SiteInfo siteInfo) throws Exception;
 }

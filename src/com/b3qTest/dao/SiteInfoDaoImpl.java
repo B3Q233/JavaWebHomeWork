@@ -11,6 +11,17 @@ import java.util.List;
 
 public class SiteInfoDaoImpl implements SiteInfoDao{
     @Override
+    public boolean insert(SiteInfo siteInfo) throws Exception {
+        boolean flag = false;
+        try (Connection conn = JDBCUtils.getConnection()) {
+            flag = DBTool.insert(siteInfo, conn);
+        } catch (SQLException e) {
+            throw new RuntimeException("SiteInfo 插入失败", e);
+        }
+        return flag;
+    }
+
+    @Override
     public boolean update(SiteInfo siteInfo,String primaryKey) throws Exception {
        boolean flag = false;
         try (Connection conn = JDBCUtils.getConnection()) {

@@ -36,18 +36,18 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">menu group 1</a>
+                    <a class="" href="javascript:;">网站设置与用户</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" id = "table">menu 1</a></dd>
-                        <dd><a href="javascript:;" id = "footer">menu 2</a></dd>
-                        <dd><a href="javascript:;">menu 3</a></dd>
+                        <dd><a href="javascript:;" id = "table">用户管理</a></dd>
+                        <dd><a href="javascript:;" id = "footer">在线用户管理</a></dd>
+                        <dd><a href="javascript:;" id = "siteImformation">网站信息设置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">menu group 2</a>
+                    <a href="javascript:;">栏目</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">list 1</a></dd>
-                        <dd><a href="javascript:;">list 2</a></dd>
+                        <dd><a href="javascript:;">新闻管理</a></dd>
+                        <dd><a href="javascript:;">栏目管理</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -68,7 +68,6 @@
 
 <script src="layui/layui.js"></script>
 <script>
-    //JS
     layui.use(['element', 'layer', 'util'], function () {
         var element = layui.element
             , layer = layui.layer
