@@ -110,5 +110,9 @@
         <url-pattern>/layout-admin.jsp</url-pattern>
     </filter-mapping>
 
+    <!--监听器配置-->
+    <listener>
+        <listener-class>com.listen.UserSessionListener</listener-class>
+    </listener>
 
 </web-app>

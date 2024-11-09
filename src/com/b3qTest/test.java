@@ -3,8 +3,10 @@ package com.b3qTest;
 import com.b3qTest.db.JDBCUtils;
 import com.b3qTest.factory.DAOFactory;
 import com.b3qTest.pojo.SiteInfo;
+import com.b3qTest.pojo.User;
 import com.b3qTest.tool.ComTool;
 import com.b3qTest.tool.DBTool;
+import com.listen.UserSessionListener;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -137,6 +139,16 @@ public class test {
 //        siteInfo.setSiteDescription("2313asdada");
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().update(siteInfo,"id"));
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().queryAll(siteInfo));
+
+        User user1  = new User();
+        user1.setName("123");
+        User user2  = new User();
+        user2.setName("123");
+        UserSessionListener.addUser(user1);
+        UserSessionListener.addUser(user2);
+        System.out.println(UserSessionListener.getOnlineUsers());
+        System.out.println(UserSessionListener.isExitedUser(user1));
+
     }
 
 }

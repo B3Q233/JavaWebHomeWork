@@ -2,6 +2,7 @@ package com.xxx.servlet;
 
 import com.b3qTest.factory.DAOFactory;
 import com.b3qTest.pojo.User;
+import com.listen.UserSessionListener;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,10 +26,15 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        resp.setContentType("text/plain");
+        if(session.getAttribute("user")!=null&&!session.getAttribute("user").equals("")){
+            resp.getWriter().write("4");
+            return;
+        }
         String captcha = (String) session.getAttribute("login");
         captcha = captcha.toLowerCase();
         String getCaptcha = req.getParameter("captcha");
-        if (getCaptcha != null) {
+        if (getCaptcha != null&&!getCaptcha.equals("")) {
             getCaptcha = getCaptcha.toLowerCase();
         }else {
             getCaptcha="";
@@ -40,20 +46,16 @@ public class login extends HttpServlet {
             throw new RuntimeException(e);
         }
         if (user == null) {
-            resp.setContentType("text/plain");
             resp.getWriter().write("1");
         } else if (!user.getPwd().equals(req.getParameter("pwd"))) {
-            resp.setContentType("text/plain");
             resp.getWriter().write("2");
         } else if (!getCaptcha.equals(captcha)) {
-            resp.setContentType("text/plain");
             resp.getWriter().write("3");
-        } else {
-            resp.setContentType("text/plain");
-            if(session.getAttribute("user")!=null&&!session.getAttribute("user").equals("")){
-                session.removeAttribute("user");
-            }
+        } else if(UserSessionListener.isExitedUser(user)){
+            resp.getWriter().write("5");
+        }else {
             session.setAttribute("user",user);
+            UserSessionListener.addUser(user);
             resp.getWriter().write("");
         }
     }

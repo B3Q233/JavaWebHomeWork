@@ -50,7 +50,13 @@
   </div>
 </div>
 <div class="content">
-  <div class="column">123</div>
+  <div class="column" >
+    <div class="column-list " id="全部"><span class="column-active">全部</span></div>
+    <div class="column-list" id="国际"><span >国际</span></div>
+    <div class="column-list" id="国内"><span >国内</span></div>
+    <div class="column-list" id="娱乐"><span >娱乐</span></div>
+    <div class="column-list" id="政治"><span >政治</span></div>
+  </div>
 </div>
 <div style="margin-top: 50px"></div>
 <jsp:include page="footer.jsp"></jsp:include>
@@ -62,7 +68,8 @@
     data["column"]=column;
     data["pagesize"] = pagesize;
     data["offset"] = offset;
-    data["style"] = "all";
+    if(column=="全部")data["style"] = "all";
+    else data["style"] = column;
     $.ajax({
       type: "post",
       url: "/getNewsList",
@@ -113,8 +120,19 @@
       $(".content").append(div);
     }
   }
+
   $(document).ready(function(){
-    getNewsList("",20,1)
+    $(".column-list").addClass("active")
+    getNewsList("国内",20,1)
   });
+
+  $(".column-list").click(function (){
+    let columnId = $(this).attr("id");
+    $(".list-news").remove()
+    $(".column-list span").removeClass("column-active")
+    $("#"+columnId+" span").addClass("column-active")
+    getNewsList(columnId,20,1);
+  })
+
 </script>
 </html>

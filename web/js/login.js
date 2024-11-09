@@ -75,6 +75,11 @@ function check() {
                     alert("密码错误!!!")
                 }else if(data=="3"){
                     alert("验证码错误!!!")
+                }else if(data=="4"){
+                    alert("您已经登录，请手动退出账号后重试")
+                }
+                else if(data=="5"){
+                    alert("该账户已经登录")
                 }
                 sendReqCapthcha();
             }

@@ -76,16 +76,19 @@
 </body>
 <script>
 
+    let column ;
+
     function setArticle(content){
         if (content==null){
             $("#text").html("<h1 style='color:red;text-align: center' >获取内容失败请检查网络连接！！！！<h1>");
             return;
         }
+        column = content["articleColumn"];
         $("#title").text(content["title"]);
         document.title = content["title"];
         $("#author").text("作者："+content["author"]);
         $("#time").text("发布时间："+content["date"]);
-        $("#article_column").text("来源："+content["articleColumn"]+"栏目");
+        $("#article_column").text("来源："+content["articleColumn"]+"新闻");
         $("#text").html(content["content"]);
     }
 

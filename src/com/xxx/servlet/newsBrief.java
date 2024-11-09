@@ -35,6 +35,7 @@ public class newsBrief extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String style = req.getParameter("style");
         String column = req.getParameter("column");
+        System.out.println(column );
         int pagesize = Integer.parseInt(req.getParameter("pagesize"));
         int offset = Integer.parseInt(req.getParameter("offset"));
         JSONObject reJson = null;

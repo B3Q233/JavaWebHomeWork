@@ -94,3 +94,27 @@ body{
     /*background-color: #2d3138;*/
     z-index: -1;
 }
+
+.content .column {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.content .column .column-list{
+    flex: 20%;
+    text-align: center;
+    color: #f5f5f5;
+    font-size: 18px;
+    margin: -5px 0;
+}
+
+.content .column .column-list span:hover{
+    cursor: pointer;
+    color: #8a8a8a;
+}
+
+.column-active{
+    color: rgb(26, 159, 255);
+    border-bottom: 5px solid rgb(26, 159, 255);
+    font-size: 20px;
+}

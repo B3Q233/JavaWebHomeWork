@@ -1,12 +1,15 @@
 package com.xxx.servlet;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.b3qTest.factory.DAOFactory;
+import com.listen.UserSessionListener;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 public class handle extends HttpServlet {
 
@@ -36,6 +39,18 @@ public class handle extends HttpServlet {
             }else{
                 resp.getWriter().write("false");
             }
+        }else if(operation!=null&&operation.equals("getOnlineUser")){
+            resp.setContentType("application/json;utf-8");
+            Set<String> getUserName =  UserSessionListener.getUserName();
+            int cnt = 0;
+            JSONObject nameJson[] =new JSONObject[getUserName.size()];
+            for(String element : getUserName){
+                nameJson[cnt] = new JSONObject();
+                nameJson[cnt++].put("name",element);
+            }
+            JSONObject retJson = new JSONObject();
+            retJson.put("names",nameJson);
+            resp.getWriter().write(String.valueOf(retJson));
         }
     }
 }
