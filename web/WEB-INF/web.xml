@@ -115,4 +115,9 @@
         <listener-class>com.listen.UserSessionListener</listener-class>
     </listener>
 
+    <!--会话配置-->
+    <session-config>
+        <session-timeout>20</session-timeout> <!-- 时间单位为分钟 -->
+    </session-config>
+
 </web-app>

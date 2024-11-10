@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Pteam 后台管理</title>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
 </head>
 <style>
     body{
@@ -39,7 +39,7 @@
                     <a class="" href="javascript:;">网站设置与用户</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" id = "table">用户管理</a></dd>
-                        <dd><a href="javascript:;" id = "footer">在线用户管理</a></dd>
+                        <dd><a href="javascript:;" id = "onlineUser">在线用户管理</a></dd>
                         <dd><a href="javascript:;" id = "siteImformation">网站信息设置</a></dd>
                     </dl>
                 </li>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="layui-body">
-        <iframe id="iframeMain" src="table.jsp" style="width: 100%"; height="100%";></iframe>
+        <iframe id="iframeMain" src="table.jsp" style="width: 100%" ; height="100%" ;></iframe>
     </div>
 
     <div class="layui-footer">
@@ -66,7 +66,7 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-id = "{{d.id}}">删除</a>
 </script>
 
-<script src="layui/layui.js"></script>
+<script src="../layui/layui.js"></script>
 <script>
     layui.use(['element', 'layer', 'util'], function () {
         var element = layui.element

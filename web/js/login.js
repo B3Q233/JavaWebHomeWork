@@ -69,6 +69,7 @@ function check() {
                 let flag = true;
                 if (data == "") {
                     alert("登录成功!!!");
+                    reload();
                 } else if (data=="1") {
                     alert("用户名不存在!!!");
                 } else if(data=="2"){

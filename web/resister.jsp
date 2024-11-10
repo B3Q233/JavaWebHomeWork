@@ -178,7 +178,7 @@
         <a href="/login.jsp" style="margin-top: -30px;">
             <h4 style="color: #fff;">已有账户？点击登录 </h4>
         </a>
-        <jsp:include page="footer.jsp"></jsp:include>
+        <jsp:include page="admin/footer.jsp"></jsp:include>
     </div>
 </div>
 

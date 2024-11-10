@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>新闻</title>
-  <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
   <link rel="stylesheet" href="/style/login.css">
   <link rel="stylesheet" href="/style/font/icomoon/style.css">
   <link rel="stylesheet" href="/style/newsList.css">
-  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="../js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <div class="responsive_header">

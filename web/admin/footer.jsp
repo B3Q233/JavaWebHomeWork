@@ -18,7 +18,7 @@
             <span><a href="#">Pteam分销 &nbsp;</a></span>|
             <span><a href="#">礼物卡 &nbsp;</a></span>|
             <span><a href="#">工作机会 &nbsp;</a></span>
-            <span><a href="/layout-admin.jsp">后台管理 &nbsp;</a></span>
+            <span><a href="/admin/layout-admin.jsp">后台管理 &nbsp;</a></span>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>站点设置管理</title>
     <!-- 引入layui的CSS文件 -->
-    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
     <script src="../js/jquery-3.5.1.min.js"></script>
     <!-- 自定义样式（可选） -->
     <style>
@@ -103,7 +103,7 @@
    </form>
 </div>
 
-<script src="layui/layui.js"></script>
+<script src="../layui/layui.js"></script>
 <script>
 
     function updateInfo(data){

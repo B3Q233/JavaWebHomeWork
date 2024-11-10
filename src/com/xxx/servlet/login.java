@@ -51,11 +51,11 @@ public class login extends HttpServlet {
             resp.getWriter().write("2");
         } else if (!getCaptcha.equals(captcha)) {
             resp.getWriter().write("3");
-        } else if(UserSessionListener.isExitedUser(user)){
+        } else if(UserSessionListener.isUserLoggedIn(user.getUser_name())){
             resp.getWriter().write("5");
         }else {
             session.setAttribute("user",user);
-            UserSessionListener.addUser(user);
+            UserSessionListener.addUser(user.getUser_name(),session.getId());
             resp.getWriter().write("");
         }
     }

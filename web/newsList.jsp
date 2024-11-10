@@ -51,7 +51,7 @@
 </div>
 <div class="content">
 </div>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="admin/footer.jsp"></jsp:include>
 </body>
 <script>
 

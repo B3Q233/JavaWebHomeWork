@@ -325,3 +325,7 @@ div canvas{
     color: rgb(158, 168, 181);
     padding-bottom: 3px;
 }
+
+#leaveAccount:hover{
+    cursor: pointer;
+}

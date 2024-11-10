@@ -1,57 +1,72 @@
 package com.listen;
 
+import com.b3qTest.pojo.SessionUser;
 import com.b3qTest.pojo.User;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserSessionListener implements HttpSessionListener {
-    //用于存储在线用户的集合
-    private static Set<User> users = new HashSet<>();
-    private static Set<String> userName = new HashSet<>();
+
+    // 使用线程安全的集合来存储在线用户信息
+    private static Set<SessionUser> sessionUsers = Collections.synchronizedSet(new HashSet<>());
+    private static Map<String, SessionUser> sessionIdToUser = new ConcurrentHashMap<>();
+    private static Map<String, HttpSession> sessionIdToSession = new ConcurrentHashMap<>();
+    private static Set<String> userName = Collections.synchronizedSet(new HashSet<>());
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        // 当创建新的会话时，此方法被调用
         HttpSession session = se.getSession();
-        userName.add("b3q");
-        userName.add("b3q1");
-        userName.add("b3q2");
-        userName.add("b3q3");
-        System.out.println("会话创建: " + session.getId());
-        // 可以在这里添加自定义逻辑，例如记录日志、增加在线用户计数等
+        sessionIdToSession.put(session.getId(), session);
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        // 当会话被销毁时，此方法被调用
         HttpSession session = se.getSession();
-        System.out.println("会话销毁: " + session.getId());
-        // 可以在这里添加自定义逻辑，例如减少在线用户计数、清理资源等
+        String sessionId = session.getId();
+
+        // 清理会话销毁后的资源
+        SessionUser sessionUser = sessionIdToUser.remove(sessionId);
+        if (sessionUser != null) {
+            sessionUsers.remove(sessionUser);
+            userName.remove(sessionUser.getUserName());
+        }
+        sessionIdToSession.remove(sessionId);
     }
 
     // 添加用户到在线用户列表
-    public static void addUser(User user) {
-        userName.add(user.getUser_name());
-        users.add(user);
+    public static void addUser(String name, String sessionId) {
+        SessionUser sessionUser = new SessionUser();
+        sessionUser.setUserName(name);
+        sessionUser.setSessionId(sessionId);
+        sessionUsers.add(sessionUser);
+        sessionIdToUser.put(sessionId, sessionUser);
+        userName.add(name);
     }
 
     // 从在线用户列表移除用户
-    public static void removeUser(User user) {
-        users.remove(user);
-        userName.remove(user.getUser_name());
+    public static void removeUser(String sessionId) {
+        SessionUser sessionUser = sessionIdToUser.remove(sessionId);
+        sessionIdToSession.get(sessionId).removeAttribute("user");
+        if (sessionUser != null) {
+            sessionUsers.remove(sessionUser);
+            userName.remove(sessionUser.getUserName());
+        }
     }
 
     // 获取在线用户列表
-    public static Set<User> getOnlineUsers() {
-        return users;
+    public static Set<SessionUser> getOnlineUsers() {
+        return new HashSet<>(sessionUsers); // 返回一个新的HashSet以避免并发修改异常
     }
 
-    public static Set<String> getUserName(){return userName;}
-
-    public static boolean isExitedUser(User user){
-        return userName.contains(user.getUser_name());
+    // 检查用户是否已登录
+    public static boolean isUserLoggedIn(String userName) {
+        return UserSessionListener.userName.contains(userName);
     }
 }

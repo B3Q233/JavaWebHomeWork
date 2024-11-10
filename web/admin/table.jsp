@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <script src="js/jquery-3.5.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+  <script src="../js/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
 </head>
   <!-- 内容主体区域 -->
 <div style="padding:15px">
@@ -36,7 +36,7 @@
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-id = "{{d.id}}">删除</a>
 </script>
 
-<script src="layui/layui.js"></script>
+<script src="../layui/layui.js"></script>
 <script>
   //JS
   layui.use(['element', 'layer', 'util'], function () {

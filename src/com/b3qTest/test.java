@@ -140,14 +140,14 @@ public class test {
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().update(siteInfo,"id"));
 //        System.out.println(DAOFactory.getIEmpSiteInfoDao().queryAll(siteInfo));
 
-        User user1  = new User();
-        user1.setName("123");
-        User user2  = new User();
-        user2.setName("123");
-        UserSessionListener.addUser(user1);
-        UserSessionListener.addUser(user2);
-        System.out.println(UserSessionListener.getOnlineUsers());
-        System.out.println(UserSessionListener.isExitedUser(user1));
+//        User user1  = new User();
+//        user1.setName("123");
+//        User user2  = new User();
+//        user2.setName("123");
+//        UserSessionListener.addUser(user1);
+//        UserSessionListener.addUser(user2);
+//        System.out.println(UserSessionListener.getOnlineUsers());
+//        System.out.println(UserSessionListener.isExitedUser(user1));
 
     }
 
