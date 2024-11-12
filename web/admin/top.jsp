@@ -2,7 +2,7 @@
 <div class="responsive_header">
   <div class="header_conten">
     <div class="header_logo">
-      <img src="../image/bg_logo/header_logo.png" alt="">
+      <img src="../image/bg_logo/img.png" alt="" id = "logoImg">
     </div>
     <div class="nav">
       <ul>

@@ -70,7 +70,6 @@
     let data = {}
     data["operation"] = operation;
     data["param"] = param;
-    console.log(data);
     $.ajax({
       type: "post",
       url: '/handle',
@@ -97,18 +96,17 @@
     let table = layui.table;
     table.render({
       elem: '#test'
-      , url: '/getdata'
+      , url: '/admin/getUsers'
       , page: true
       , response: {
         statusCode: 200 // 重新规定成功的状态码为 200，table 组件默认为 0
       },
       parseData: function(res){
-        console.log(res);
         return {
-          "code": res.code, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.count, //解析数据长度
-          "data": res.data //解析数据列表
+          "code": res["code"], //解析接口状态
+          "msg": res["msg"], //解析提示文本
+          "count": res["count"], //解析数据长度
+          "data": res["data"] //解析数据列表
         };
       }
       , cellMinWidth: 60

@@ -10,6 +10,7 @@ public class NewsService implements NewsDao {
 
     // NewsDao 对象 实现应用
     private NewsDao dao = null;
+
     public NewsService() {
         try{
             this.dao = new NewsDaoImpl();
@@ -27,6 +28,17 @@ public class NewsService implements NewsDao {
             }else{
                 return  false;
             }
+        }catch (Exception e){
+            throw e;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean delete(int id) throws Exception {
+        boolean flag = false;
+        try {
+            flag = this.dao.delete(id);
         }catch (Exception e){
             throw e;
         }
@@ -108,5 +120,19 @@ public class NewsService implements NewsDao {
             throw e;
         }
         return all;
+    }
+
+    @Override
+    public boolean update(News news, String primaryKey) throws Exception {
+        boolean flag = false;
+        try {
+            if(this.dao.findNews(news.getId())==null){
+                return false;
+            }
+            flag = this.dao.update(news,primaryKey);
+        }catch (Exception e){
+            throw e;
+        }
+        return flag;
     }
 }

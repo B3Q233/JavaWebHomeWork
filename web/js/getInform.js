@@ -25,7 +25,6 @@ function getUserName(){
             if(data!=null&&data!==""){
                 setUserName(data);
             }else{
-                console.log("none");
                 $("#user").text("登录");
                 $("#user").attr("href","../login.jsp");
                 if($("#leaveAccount").length!==0){
@@ -70,5 +69,32 @@ function leaveAccount(){
     reload();
 }
 
+function getLogoImg(){
+    let data = {}
+    data["operation"] = "getLogo";
+    data["param"] = "";
+    $.ajax({
+        type: "get",
+        url: "/getLogo",
+        //data:定义数据,以键值对的方式放在大括号里
+        data: data,
+        dataType: 'json',
+        //statusCode:状态码，用于定义执行时提示的状态
+        statusCode: {
+            404: function () {
+                alert("404");
+            },
+            500: function () {
+                alert("500");
+            }
+        },
+        success: function (data) {
+           if(data["status"]==1){
+               $("#logoImg").attr('src',data["data"]);
+           }
+        }
+    });
+}
 
+getLogoImg()
 getUserName()

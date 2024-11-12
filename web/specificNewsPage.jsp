@@ -13,48 +13,12 @@
     <link rel="stylesheet" href="/style/editor/view.css">
     <link rel="stylesheet" href="/style/editor/normal.css">
     <link rel="stylesheet" href="/style/specific_new.css">
+    <script src="/js/login.js"></script>
+    <script src="js/getInform.js"></script>
 </head>
 
 <body style="background-image: none">
-<div class="responsive_header">
-    <div class="header_conten">
-        <div class="header_logo">
-            <img src="../image/bg_logo/header_logo.png" alt="">
-        </div>
-        <div class="nav">
-            <ul>
-                <li><a href="../html/main_pasage.html">
-                    <p>商店</p>
-                </a>
-                </li>
-                <li><a href="../html/community_passage.html">
-                    <p>社区</p>
-                </a>
-                </li>
-                <li><a href="../html/about_Pteam_passage.html">
-                    <p class="active">关于</p>
-                </a>
-                </li>
-                <li><a href="../html/customer_service_passage.html">
-                    <p>客服</p>
-                </a>
-                </li>
-            </ul>
-        </div>
-        <div class="globle_action_meau">
-            <a href="#" class="header_install">
-                &nbsp;&nbsp;
-                <span class="font_download"></span>
-                <span>下载pteam</span>
-            </a>
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            <a href="../html/login.html">登录</a>
-            &nbsp;|&nbsp;
-            <a class="header_language_pulldown" href="#">语言</a>
-        </div>
-    </div>
-</div>
+<jsp:include page="admin/top.jsp"></jsp:include>
 <!-- 内容 -->
 <div class="content editor-content-view" style="min-height: 900px">
 

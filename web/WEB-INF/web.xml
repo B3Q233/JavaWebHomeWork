@@ -15,16 +15,12 @@
         <servlet-class>com.xxx.servlet.login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>redirect</servlet-name>
-        <servlet-class>com.xxx.servlet.redirect</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>createCaptcha</servlet-name>
         <servlet-class>com.xxx.servlet.generateCaptcha</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>getData</servlet-name>
-        <servlet-class>com.xxx.servlet.getData</servlet-class>
+        <servlet-name>getUsers</servlet-name>
+        <servlet-class>com.xxx.servlet.getUsers</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>handle</servlet-name>
@@ -32,7 +28,7 @@
     </servlet>
     <servlet>
         <servlet-name>getNewsList</servlet-name>
-        <servlet-class>com.xxx.servlet.newsBrief</servlet-class>
+        <servlet-class>com.xxx.servlet.getNewsListToUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>uploadImg</servlet-name>
@@ -43,12 +39,24 @@
         <servlet-class>com.xxx.servlet.addNews</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>getNews</servlet-name>
+        <servlet-name>getSpecificNews</servlet-name>
         <servlet-class>com.xxx.servlet.getSpecificNews</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updateSiteInformation</servlet-name>
         <servlet-class>com.xxx.servlet.updateSiteInformation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getLogo</servlet-name>
+        <servlet-class>com.xxx.servlet.getLogo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getNewsListToAdmin</servlet-name>
+        <servlet-class>com.xxx.servlet.getNewsListToAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteNews</servlet-name>
+        <servlet-class>com.xxx.servlet.deleteNews</servlet-class>
     </servlet>
 
     <!--servlet 映射-->
@@ -62,16 +70,12 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>redirect</servlet-name>
-        <url-pattern>/redirect</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>createCaptcha</servlet-name>
         <url-pattern>/createCaptcha</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>getData</servlet-name>
-        <url-pattern>/getdata</url-pattern>
+        <servlet-name>getUsers</servlet-name>
+        <url-pattern>/admin/getUsers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>handle</servlet-name>
@@ -87,15 +91,27 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addNews</servlet-name>
-        <url-pattern>/addNews</url-pattern>
+        <url-pattern>/admin/addNews</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>getNews</servlet-name>
+        <servlet-name>getSpecificNews</servlet-name>
         <url-pattern>/getNews</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>updateSiteInformation</servlet-name>
-        <url-pattern>/updateSiteInform</url-pattern>
+        <url-pattern>/admin/updateSiteInform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getLogo</servlet-name>
+        <url-pattern>/getLogo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getNewsListToAdmin</servlet-name>
+        <url-pattern>/admin/getNewsForAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteNews</servlet-name>
+        <url-pattern>/admin/deleteNews</url-pattern>
     </servlet-mapping>
 
     <!--过滤器配置-->
@@ -107,7 +123,7 @@
     </filter>
     <filter-mapping>
         <filter-name>adminManagerAccess</filter-name>
-        <url-pattern>/layout-admin.jsp</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
 
     <!--监听器配置-->

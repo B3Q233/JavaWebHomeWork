@@ -44,10 +44,11 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">栏目</a>
+                    <a href="javascript:;">栏目与新闻</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">新闻管理</a></dd>
+                        <dd><a href="javascript:;" id="newsList">新闻管理</a></dd>
                         <dd><a href="javascript:;">栏目管理</a></dd>
+                        <dd><a href="javascript:;" id="newsEdit">新闻添加</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -58,8 +59,6 @@
         <iframe id="iframeMain" src="table.jsp" style="width: 100%" ; height="100%" ;></iframe>
     </div>
 
-    <div class="layui-footer">
-    </div>
 </div>
 
 <script type="text/html" id="custom">

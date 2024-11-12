@@ -18,7 +18,7 @@ public class NewsDaoImpl implements NewsDao {
         try (Connection conn = JDBCUtils.getConnection()) {
             flag = DBTool.insert(news, conn);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败", e);
+            throw new RuntimeException("插入新闻失败", e);
         }
         return flag;
     }
@@ -29,7 +29,18 @@ public class NewsDaoImpl implements NewsDao {
         try (Connection conn = JDBCUtils.getConnection()) {
             flag = DBTool.delete(news, conn, key);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败", e);
+            throw new RuntimeException("删除新闻失败", e);
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean update(News news, String primaryKey) throws Exception {
+        boolean flag = false;
+        try (Connection conn = JDBCUtils.getConnection()) {
+            flag = DBTool.update(news, conn,primaryKey);
+        } catch (SQLException e) {
+            throw new RuntimeException("新闻更新失败", e);
         }
         return flag;
     }
@@ -40,7 +51,7 @@ public class NewsDaoImpl implements NewsDao {
         try (Connection conn = JDBCUtils.getConnection()) {
             list = DBTool.queryAll(news, conn);
         } catch (SQLException e) {
-            throw new RuntimeException("创建链接失败", e);
+            throw new RuntimeException("查询新闻失败", e);
         }
         return list;
     }
@@ -140,6 +151,20 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
+    public boolean delete(int id) throws Exception {
+        String sql = "DELETE FROM news WHERE id = ?";
+        try (Connection conn = JDBCUtils.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            // 这里可以记录日志或者抛出自定义异常
+            throw new Exception("删除新闻失败", e);
+        }
+    }
+
+    @Override
     public int getSizeByColumn(String column) throws Exception {
         int count = 0;
         String sql = "SELECT COUNT(*) FROM news WHERE articleColumn = ?";
@@ -196,4 +221,6 @@ public class NewsDaoImpl implements NewsDao {
 
         return newsList;
     }
+
+
 }

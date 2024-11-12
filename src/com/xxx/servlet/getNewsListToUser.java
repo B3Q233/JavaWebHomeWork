@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class newsBrief extends HttpServlet {
+public class getNewsListToUser extends HttpServlet {
 
     public JSONObject getNewsList(List<News> list,int size){
         JSONObject reJson = new JSONObject();
@@ -35,9 +35,18 @@ public class newsBrief extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String style = req.getParameter("style");
         String column = req.getParameter("column");
-        System.out.println(column );
-        int pagesize = Integer.parseInt(req.getParameter("pagesize"));
-        int offset = Integer.parseInt(req.getParameter("offset"));
+        int pagesize = 0;
+        int offset = 0;
+        if(req.getParameter("pagesize")!=null){
+            pagesize = Integer.parseInt(req.getParameter("pagesize"));
+        }
+        if(req.getParameter("page")!=null){
+            pagesize = Integer.parseInt(req.getParameter("page"));
+        }
+        if(req.getParameter("offset")!=null){
+           offset = Integer.parseInt(req.getParameter("offset"));
+        }
+
         JSONObject reJson = null;
         if(style!=null&&style.equals("all")){
             try {

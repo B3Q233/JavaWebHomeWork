@@ -116,9 +116,6 @@
                 <div class="layui-upload-list">
                     <img class="layui-upload-img" id="upload-show-img" style="width: 100%; height: 92px;">
                     <div id="ID-upload-demo-text"></div>
-                    <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="filter-demo" style="margin-top: 10px">
-                        <div class="layui-progress-bar" lay-percent=""></div>
-                    </div>
                 </div>
                 <button type="button" class="layui-btn" id="upload-img-btn">
                     <i class="layui-icon layui-icon-upload"></i> 图片上传
@@ -149,10 +146,11 @@
 
 
 <script>
+    let newsId = 0
     function sendNewsData(data) {
         $.ajax({
             type: "post",
-            url: "/addNews",
+            url: "/admin/addNews",
             //data:定义数据,以键值对的方式放在大括号里
             data: data,
             dataType: 'json',
@@ -168,7 +166,7 @@
             success: function (data) {
                 console.log(data["status"]);
                 layui.use('layer', function () {
-                    var layer = layui.layer;
+                    let layer = layui.layer;
                     if (data["status"] === 1) {
                         layer.open({
                             type:1,
@@ -180,6 +178,13 @@
                         layer.open({
                             type:1,
                             content:data["data"],
+                            btn:["确认"],
+                            offset: ['30%', '40%']
+                        })
+                    } else if(data==3){
+                        layer.open({
+                            type:1,
+                            content:"更新成功",
                             btn:["确认"],
                             offset: ['30%', '40%']
                         })
@@ -279,10 +284,52 @@
             dataNews["column"] = $("#column").val();
             dataNews["brief"] = $("#brief").val();
             dataNews["briefImg"] = $("#upload-show-img").attr('src');
+            dataNews["id"] = newsId;
             sendNewsData(dataNews);
             return false;
         });
     });
+
+    function setParams(data){
+        $("#title").val(data["title"]);
+        $("#author").val(data["author"]);
+        $("#brief").val(data["brief"]);
+        $("#upload-show-img").attr("src",data["briefImg"]);
+        editor.setHtml(data["content"]);
+    }
+
+    function getNews(id){
+        let data = {}
+        data["id"] = id;
+        $.ajax({
+            type: "post",
+            url: "/getNews",
+            //data:定义数据,以键值对的方式放在大括号里
+            data: data,
+            dataType: 'json',
+            //statusCode:状态码，用于定义执行时提示的状态
+            statusCode: {
+                404: function () {
+                    alert("404");
+                },
+                500: function () {
+                    alert("500");
+                }
+            },
+            success: function (data) {
+                setParams(data);
+            }
+        });
+    }
+
+    $(document).ready(function (){
+        let paramValue = new URLSearchParams(window.location.search).get('id');
+        if(paramValue!==null){
+            newsId = paramValue;
+            getNews(paramValue);
+        }
+    })
+
 
 
 </script>

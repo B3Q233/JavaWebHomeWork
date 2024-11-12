@@ -8,47 +8,10 @@
     <link rel="stylesheet" href="/style/font/icomoon/style.css">
     <link rel="stylesheet" href="/style/newsList.css">
     <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/getInform.js"></script>
 </head>
 <body>
-<div class="responsive_header">
-    <div class="header_conten">
-        <div class="header_logo">
-            <img src="/image/bg_logo/header_logo.png" alt="">
-        </div>
-        <div class="nav">
-            <ul>
-                <li><a href="/html/main_pasage.html">
-                    <p>商店</p>
-                </a>
-                </li>
-                <li><a href="/html/community_passage.html">
-                    <p>社区</p>
-                </a>
-                </li>
-                <li><a href="#">
-                    <p class="active">关于</p>
-                </a>
-                </li>
-                <li><a href="/html/customer_service_passage.html">
-                    <p>客服</p>
-                </a>
-                </li>
-            </ul>
-        </div>
-        <div class="globle_action_meau">
-            <a href="#" class="header_install">
-                &nbsp;&nbsp;
-                <span class="font_download"></span>
-                <span>下载pteam</span>
-            </a>
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            <a href="/html/login.html">登录</a>
-            &nbsp;|&nbsp;
-            <a class="header_language_pulldown" href="#">语言</a>
-        </div>
-    </div>
-</div>
+<jsp:include page="admin/top.jsp"></jsp:include>
 <div class="content">
 </div>
 <jsp:include page="admin/footer.jsp"></jsp:include>

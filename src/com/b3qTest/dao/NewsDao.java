@@ -1,6 +1,7 @@
 package com.b3qTest.dao;
 
 import com.b3qTest.pojo.News;
+import com.b3qTest.pojo.SiteInfo;
 
 import java.util.List;
 
@@ -25,6 +26,14 @@ public interface NewsDao {
      * @throws Exception
      */
     public boolean delete(News news,String key) throws Exception;
+
+    /**
+     *  新闻删除函数，根据id删除新闻
+     * @param id 主键 id
+     * @return 一个boolean值，表示删除数据是否成功，true表示成功，否则失败
+     * @throws Exception
+     */
+    public boolean delete(int id) throws Exception;
 
     /**
      *  新闻查询函数，接受一个News对象,查询所有数据
@@ -75,4 +84,13 @@ public interface NewsDao {
      * @throws Exception
      */
     public int getSizeByColumn(String column) throws Exception;
+
+    /**
+     *  网站详情更新函数，接受一个 NEWS 对象,更新所有数据
+     * @param news  News对象
+     * @param primaryKey 主键名
+     * @return 一个 布尔值 表示更新是否成功
+     * @throws Exception
+     */
+    public boolean update(News news, String primaryKey) throws Exception;
 }

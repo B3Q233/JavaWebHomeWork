@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <!-- 引入js文件实现动态验证 -->
   <script src="/js/login.js"></script>
   <jsp:include page="admin/top.jsp"></jsp:include>
   <!-- 登录 -->
@@ -40,7 +39,7 @@
             style="width: 80%; height: 80%; padding-top: 10px; padding-bottom: 10px;"></div>
         <div style="color: #fff; ">通过二维码使用 Steam 手机应用登录</div>
       </div>
-      <a href="/resister.jsp" style="margin-top: 46px; margin-left: 8px;">没有账户？点击注册</a>
+      <a href="/register.jsp" style="margin-top: 46px; margin-left: 8px;">没有账户？点击注册</a>
     </div>
   </div>
   <jsp:include page="admin/footer.jsp"></jsp:include>

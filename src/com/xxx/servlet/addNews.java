@@ -36,6 +36,19 @@ public class addNews extends HttpServlet {
         news.setDate(date);
         news.setBriefImg(briefImg);
         news.setBrief(brief);
+        if(req.getParameter("id")!=null){
+            news.setId(Integer.parseInt(req.getParameter("id")));
+            try {
+                if(DAOFactory.getIEmpNewsDAOInstance().update(news,"id")){
+                    resp.setCharacterEncoding("utf-8");
+                    resp.setContentType("application/json;charset=utf-8");
+                    resp.getWriter().write("3");
+                    return;
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         boolean flag = false;
         JSONObject reJson = null;
         try {

@@ -109,7 +109,7 @@
     function updateInfo(data){
         $.ajax({
             type: "post",
-            url: '/updateSiteInform',
+            url: '/admin/updateSiteInform',
             data: data,
             dataType: 'json',
             statusCode: {
@@ -146,7 +146,7 @@
     function getInfo() {
         $.ajax({
             type: "get",
-            url: '/updateSiteInform',
+            url: '/admin/updateSiteInform',
             data: "get",
             dataType: 'json',
             statusCode: {

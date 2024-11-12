@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class getData extends HttpServlet {
+public class getUsers extends HttpServlet {
 
     public JSONObject getData(List<User> users,int size){
         JSONObject retJson = new JSONObject();
