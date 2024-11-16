@@ -8,7 +8,7 @@
 </head>
 <style>
   .layui-table-cell{
-    height:auto;
+    height:60px;
     line-height: 30px;
   }
 </style>
@@ -54,8 +54,9 @@
             return '<img src="' + d.briefImg + '" alt="缩略图" width="100%" height="100%"/>';
           },class :'img-height'},
         {field: 'articleColumn', title: '新闻栏目'},
+        {field: 'dir', title: '新闻目录'},
         {fixed: 'right', title:'操作', toolbar: '#toolbar',width: 200}
-      ]]
+      ]],
     });
 
     // 监听工具条
@@ -64,7 +65,7 @@
       if(obj.event === 'del'){
         deleteNews(data.id)
       } else if(obj.event === 'edit'){
-        window.location.href = '/admin/newsEdit.jsp?id=' + data.id;
+        window.open('/admin/newsEdit.jsp?id=' + data.id);
       }else if(obj.event ==='browse'){
         window.open('/getNews?id=' + data.id, '_blank');
       }
@@ -78,7 +79,7 @@
         // 确认删除，发送请求到服务器
         $.ajax({
           type: "post",
-          url: "/admin/deleteNews", // 假设这是删除新闻的API路径
+          url: "/admin/deleteNews",
           data: { id: id },
           dataType: 'json',
           success: function (data) {

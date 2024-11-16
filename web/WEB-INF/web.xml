@@ -58,6 +58,18 @@
         <servlet-name>deleteNews</servlet-name>
         <servlet-class>com.xxx.servlet.deleteNews</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>firstCategoryHandle</servlet-name>
+        <servlet-class>com.xxx.servlet.firstCategoryHandle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>secondCategoryHandle</servlet-name>
+        <servlet-class>com.xxx.servlet.secondCategoryHandle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>thirdCategoryHandle</servlet-name>
+        <servlet-class>com.xxx.servlet.thirdCategoryHandle</servlet-class>
+    </servlet>
 
     <!--servlet 映射-->
 
@@ -113,7 +125,18 @@
         <servlet-name>deleteNews</servlet-name>
         <url-pattern>/admin/deleteNews</url-pattern>
     </servlet-mapping>
-
+   <servlet-mapping>
+       <servlet-name>firstCategoryHandle</servlet-name>
+       <url-pattern>/firstCategoryHandle</url-pattern>
+   </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>secondCategoryHandle</servlet-name>
+        <url-pattern>/secondCategoryHandle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>thirdCategoryHandle</servlet-name>
+        <url-pattern>/thirdCategoryHandle</url-pattern>
+    </servlet-mapping>
     <!--过滤器配置-->
 
     <!--后台管理员登录-->

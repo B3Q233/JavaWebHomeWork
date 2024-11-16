@@ -16,7 +16,7 @@ public class getLogo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<SiteInfo> siteInfos= DAOFactory.getIEmpSiteInfoDao().queryAll(new SiteInfo());
+            List<SiteInfo> siteInfos= DAOFactory.getIEmpSiteInfoInstance().queryAll(new SiteInfo());
             JSONObject reJson = ComTool.setRetJson(1,siteInfos.get(0).getLogoImg());
             resp.setContentType("application/json;utf-8");
             resp.getWriter().write(String.valueOf(reJson));

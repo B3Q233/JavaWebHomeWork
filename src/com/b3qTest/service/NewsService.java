@@ -123,6 +123,11 @@ public class NewsService implements NewsDao {
     }
 
     @Override
+    public List<News> findByParentColumn(News news, String primaryKey, Object value) throws Exception {
+        return this.dao.findByParentColumn(news ,primaryKey,value);
+    }
+
+    @Override
     public boolean update(News news, String primaryKey) throws Exception {
         boolean flag = false;
         try {

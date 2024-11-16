@@ -1,5 +1,6 @@
 package com.b3qTest.dao;
 
+import com.b3qTest.pojo.FirstCategory;
 import com.b3qTest.pojo.News;
 import com.b3qTest.db.JDBCUtils;
 import com.b3qTest.tool.DBTool;
@@ -186,6 +187,17 @@ public class NewsDaoImpl implements NewsDao {
         }
 
         return count;
+    }
+
+    @Override
+    public List<News> findByParentColumn(News news, String primaryKey, Object value) throws Exception {
+        List<News> list = new ArrayList<>();
+        try (Connection conn = JDBCUtils.getConnection()) {
+            list = DBTool.getDataList(News.class, conn,primaryKey,value);
+        } catch (SQLException e) {
+            throw new RuntimeException("查询特定栏目新闻失败", e);
+        }
+        return list;
     }
 
     @Override

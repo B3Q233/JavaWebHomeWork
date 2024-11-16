@@ -94,20 +94,34 @@
             </div>
         </div>
 
-        <!-- 分类 -->
-        <div class="layui-form-item">
-            <label class="layui-form-label">栏目</label>
-            <div class="layui-input-block">
-                <select name="category" lay-verify="required" id="column">
-                    <option value=""></option>
-                    <option value="国内">国内</option>
-                    <option value="国际">国际</option>
-                    <option value="娱乐">娱乐</option>
-                    <option value="体育">体育</option>
-                    <option value="财经">财经</option>
-                </select>
-            </div>
+    <!-- 一级栏目 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">一级栏目</label>
+        <div class="layui-input-block">
+            <select id="column1" lay-filter="column1" lay-verify="required">
+                <option value="">请选择一级栏目</option>
+            </select>
         </div>
+    </div>
+    <!-- 二级栏目 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">二级栏目</label>
+        <div class="layui-input-block">
+            <select id="column2" lay-filter="column2" lay-verify="required">
+                <option value="">请选择二级栏目</option>
+            </select>
+        </div>
+    </div>
+    <!-- 三级栏目 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">三级栏目</label>
+        <div class="layui-input-block">
+            <select id="column3" lay-filter="column3" lay-verify="required">
+                <option value="">请选择三级栏目</option>
+            </select>
+        </div>
+    </div>
+
 
         <!-- 缩略图回显 -->
         <div class="layui-form-item">
@@ -232,12 +246,117 @@
 
 <script>
 
+    let categoryId = 0;
+
+    function getCategory1(param){
+        initColum();
+        $.ajax({
+            url: '/firstCategoryHandle', // 假设这是获取一级栏目的API端点
+            type: 'GET',
+            dataType: 'json', // 期望返回的数据类型
+            success: function(data) {
+                // 假设返回的数据是一个数组，每个元素包含id和name属性
+                let colum = data.data;
+                let select = $('#column1');
+                select.find('option:not(:first)').remove();
+                for (let i in colum){
+                    let categoryName = colum[i].name; // 分类名称
+                    // 创建一个新的option元素，并设置其值和文本
+                    let option = $("<option></option>");
+                    option.val(categoryName).text(categoryName);
+                    option.attr("name",colum[i].id);
+                    // 将option元素添加到select元素中
+                    select.append(option);
+                }
+                if(param!=null){
+                    $("#column1").val(param[0]);
+                    getCategory2(param);
+                }
+                layui.form.render();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching level 1 columns: " + error);
+            }
+        });
+    }
+
+    function getCategory2(param){
+        let id = $("#column1 option:selected").attr("name");
+        $.ajax({
+            type: 'GET',
+            url: '/secondCategoryHandle', // 请求二级栏目的URL
+            dataType:"json",
+            data:{"id":id},
+            success: function(data){
+                // 假设返回的数据是一个数组，每个元素包含id和name属性
+                let colum = data.data;
+                let select = $('#column2');
+                select.find('option:not(:first)').remove();
+                for (let i in colum){
+                    let categoryName = colum[i].name; // 分类名称
+                    // 创建一个新的option元素，并设置其值和文本
+                    let option = $("<option></option>");
+                    option.val(categoryName).text(categoryName);
+                    option.attr("name",colum[i].id);
+                    select.append(option);
+                }
+                if(param!=null){
+                    $("#column2").val(param[1]);
+                    getCategory3(param);
+                }
+                layui.form.render();
+            }
+        });
+    }
+
+    function getCategory3(param){
+        let id = $("#column2 option:selected").attr("name");
+        $.ajax({
+            type: 'get',
+            url: '/thirdCategoryHandle', // 请求三级栏目的URL
+            dataType:"json",
+            data:{"id":id},
+            success: function(data){
+                let colum = data.data;
+                let select = $('#column3');
+                select.find('option:not(:first)').remove();
+                for (let i in colum){
+                    let categoryName = colum[i].name; // 分类名称
+                    let option = $("<option></option>");
+                    option.val(categoryName).text(categoryName);
+                    option.attr("name",colum[i].id);
+                    select.append(option);
+                }
+                if(param!=null){
+                    $("#column3").val(param[2]);
+                }
+                layui.form.render();
+            }
+        });
+    }
+
+    function initColum() {
+        let select2 = $('#column2');
+        let select3 = $('#column3');
+        select2.find('option:not(:first)').remove();
+        select3.find('option:not(:first)').remove();
+    }
+
     layui.use('form', function () {
         let form = layui.form;
         let upload = layui.upload;
         let layer = layui.layer;
         let element = layui.element;
         let $ = layui.$;
+
+        form.on('select(column1)', function(){
+            getCategory2(null);
+        });
+
+        // 监听二级栏目选择
+        form.on('select(column2)', function(){
+            getCategory3(null);
+        });
 
         // 配置全局的 alert
         layer.config({
@@ -281,10 +400,12 @@
             dataNews["content"] = editor.getHtml();
             dataNews["title"] = $("#title").val();
             dataNews["author"] = $("#author").val();
-            dataNews["column"] = $("#column").val();
             dataNews["brief"] = $("#brief").val();
             dataNews["briefImg"] = $("#upload-show-img").attr('src');
             dataNews["id"] = newsId;
+            dataNews["column"] = $("#column3").val();
+            dataNews["dir"] = $("#column1").val() + "/" + $("#column2").val() + "/" + $("#column3").val();
+            dataNews["categoryId"] = $("#column3 option:selected").attr("name");
             sendNewsData(dataNews);
             return false;
         });
@@ -295,7 +416,10 @@
         $("#author").val(data["author"]);
         $("#brief").val(data["brief"]);
         $("#upload-show-img").attr("src",data["briefImg"]);
+        let columns = data["articleColumn"].split('/');
+        getCategory1(columns);
         editor.setHtml(data["content"]);
+        layui.form.render();
     }
 
     function getNews(id){
@@ -327,6 +451,8 @@
         if(paramValue!==null){
             newsId = paramValue;
             getNews(paramValue);
+        }else{
+            getCategory1(null);
         }
     })
 

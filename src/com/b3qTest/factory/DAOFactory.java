@@ -1,11 +1,8 @@
 package com.b3qTest.factory;
 
-import com.b3qTest.dao.NewsDao;
-import com.b3qTest.dao.SiteInfoDao;
-import com.b3qTest.dao.UserDao;
-import com.b3qTest.service.NewsService;
-import com.b3qTest.service.SiteInfoService;
-import com.b3qTest.service.UserService;
+import com.b3qTest.dao.*;
+import com.b3qTest.pojo.SecondCategory;
+import com.b3qTest.service.*;
 
 /**
  * @author b3q
@@ -21,7 +18,19 @@ public class DAOFactory {
         return new NewsService();
     }
 
-    public static SiteInfoDao getIEmpSiteInfoDao() throws Exception{
+    public static SiteInfoDao getIEmpSiteInfoInstance() throws Exception{
         return new SiteInfoService();
+    }
+
+    public static FirstCategoryDao getIEmpFirstCategoryInstance() throws Exception{
+        return new FirstCategoryService();
+    }
+
+    public static SecondCategoryDao getIEmpSecondCategoryInstance() throws Exception{
+        return new secondCategoryService();
+    }
+
+    public static ThirdCategoryDao getIEmpThirdCategoryInstance() throws Exception{
+        return new ThirdCategoryService();
     }
 }

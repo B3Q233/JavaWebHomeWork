@@ -17,7 +17,7 @@ public class updateSiteInformation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-             List<SiteInfo> siteInfoList = DAOFactory.getIEmpSiteInfoDao().queryAll(new SiteInfo());
+             List<SiteInfo> siteInfoList = DAOFactory.getIEmpSiteInfoInstance().queryAll(new SiteInfo());
              if(siteInfoList.size()>0&&siteInfoList!=null){
                  resp.setContentType("application/json;charset=utf-8;");
                  JSONObject siteJson = JSONObject.from(siteInfoList.get(0));
@@ -49,7 +49,7 @@ public class updateSiteInformation extends HttpServlet {
         siteInfo.setLogoImg(siteImg);
         siteInfo.setSiteKeyWords(siteKeywords);
         try {
-            if(DAOFactory.getIEmpSiteInfoDao().update(siteInfo,"id")){
+            if(DAOFactory.getIEmpSiteInfoInstance().update(siteInfo,"id")){
                 String retJson = String.valueOf(ComTool.setRetJson(0,"数据更新成功"));
                 resp.setContentType("application/json;charset=utf-8;");
                 resp.getWriter().write(retJson);

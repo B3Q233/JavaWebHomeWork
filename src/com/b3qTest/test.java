@@ -2,6 +2,8 @@ package com.b3qTest;
 
 import com.b3qTest.db.JDBCUtils;
 import com.b3qTest.factory.DAOFactory;
+import com.b3qTest.pojo.FirstCategory;
+import com.b3qTest.pojo.SecondCategory;
 import com.b3qTest.pojo.SiteInfo;
 import com.b3qTest.pojo.User;
 import com.b3qTest.tool.ComTool;
@@ -149,6 +151,19 @@ public class test {
 //        System.out.println(UserSessionListener.getOnlineUsers());
 //        System.out.println(UserSessionListener.isExitedUser(user1));
 
+//        FirstCategory firstCategory = new FirstCategory();
+//        firstCategory.setName("新闻");
+//        try {
+//            System.out.println(DAOFactory.getIEmpFirstCategoryInstance().insert(firstCategory));
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+
+//        SecondCategory secondCategory = new SecondCategory();
+//        secondCategory.setId(8);
+//        secondCategory.setParentName("1231");
+//        secondCategory.setName("asdas");
+//        DAOFactory.getIEmpSecondCategoryInstance().update(secondCategory,"id",8);
     }
 
 }

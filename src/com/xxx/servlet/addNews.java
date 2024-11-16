@@ -27,6 +27,8 @@ public class addNews extends HttpServlet {
         String column = req.getParameter("column");
         String brief = req.getParameter("brief");
         String briefImg = req.getParameter("briefImg");
+        String dir = req.getParameter("dir");
+        int categoryId = Integer.parseInt(req.getParameter("categoryId"));
         Date date = ComTool.getNowDate();
         News news = new News();
         news.setAuthor(author);
@@ -36,6 +38,8 @@ public class addNews extends HttpServlet {
         news.setDate(date);
         news.setBriefImg(briefImg);
         news.setBrief(brief);
+        news.setCategoryId(categoryId);
+        news.setDir(dir);
         if(req.getParameter("id")!=null){
             news.setId(Integer.parseInt(req.getParameter("id")));
             try {

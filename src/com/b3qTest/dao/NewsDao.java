@@ -4,6 +4,7 @@ import com.b3qTest.pojo.News;
 import com.b3qTest.pojo.SiteInfo;
 
 import java.util.List;
+import java.util.SplittableRandom;
 
 /**
  * @author b3q
@@ -93,4 +94,13 @@ public interface NewsDao {
      * @throws Exception
      */
     public boolean update(News news, String primaryKey) throws Exception;
+
+    /**.
+     *  新闻查询函数，栏目为column的第x页的所有新闻
+     * @param primaryKey 主键
+     * @param value 主键值
+     * @return List<News> news对象列表
+     * @throws Exception
+     */
+    public List<News> findByParentColumn(News news, String primaryKey ,Object value) throws Exception;
 }

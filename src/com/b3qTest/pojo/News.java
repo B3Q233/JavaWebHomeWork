@@ -33,6 +33,10 @@ public class News {
     // 日期
     private Date date;
 
+    private int categoryId;
+
+    private String dir;
+
     public String getArticleColumn() {
         return articleColumn;
     }
@@ -99,4 +103,19 @@ public class News {
     }
 
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
 }

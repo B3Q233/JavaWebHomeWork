@@ -1,6 +1,7 @@
 package com.b3qTest.tool;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,6 +76,62 @@ public class DBTool {
      * @param obj JAVABean 对象
      * @param conn 数据库连接对象
      * @param key  对应的属性
+     * @param value  属性对应的值
+     * @return boolean true表示删除成功,否则表示删除失败
+     * @throws SQLException
+     */
+    public static boolean delete(Object obj, Connection conn,String key,Object value) throws SQLException{
+        boolean flag = false; // 初始化标志位，默认为删除失败
+
+        // 获取对象的类类型
+        Class<?> clazz = obj.getClass();
+        // 获取对象中指定属性的Field对象
+        Field field;
+        try {
+            field = clazz.getDeclaredField(key);
+            // 设置私有属性也可以访问
+            field.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            throw new SQLException("Field not found: " + key, e);
+        }
+
+        // 构建删除SQL语句
+        String sql = "DELETE FROM " + clazz.getSimpleName().toLowerCase() + " WHERE " + key + " = ?";
+
+        // 使用PreparedStatement执行SQL语句
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            // 获取属性的类型
+            Class<?> fieldType = field.getType();
+            // 设置SQL语句中的参数值，根据属性类型进行转换
+            if (fieldType == int.class || fieldType == Integer.class) {
+                pstmt.setInt(1, (Integer) value);
+            } else if (fieldType == long.class || fieldType == Long.class) {
+                pstmt.setLong(1, (Long) value);
+            } else if (fieldType == double.class || fieldType == Double.class) {
+                pstmt.setDouble(1, (Double) value);
+            } else if (fieldType == boolean.class || fieldType == Boolean.class) {
+                pstmt.setBoolean(1, (Boolean) value);
+            } else if (fieldType == String.class) {
+                pstmt.setString(1, (String) value);
+            } else {
+                // 对于其他类型，可以使用 setObject 方法
+                pstmt.setObject(1, value);
+            }
+            // 执行删除操作
+            int affectedRows = pstmt.executeUpdate();
+            // 如果有行被删除，则设置标志位为true
+            flag = affectedRows > 0;
+        }
+
+        // 返回删除操作的结果
+        return flag;
+    }
+
+    /**
+     * 反射优化数据删除，传入表对应的JAVABean对象和属性，根据对象动态删除对应的表中数据
+     * @param obj JAVABean 对象
+     * @param conn 数据库连接对象
+     * @param key  对应的属性
      * @return boolean true表示删除成功,否则表示删除失败
      * @throws SQLException
      */
@@ -137,7 +194,8 @@ public class DBTool {
      * 反射优化数据更新，传入表对应的JAVABean对象，根据对象动态更新对应的表中所有的数据
      * @param obj  JAVABean 对象
      * @param conn 数据库连接对象
-     * @return List<obj> 传入的对象类型的list
+     * @param primaryKey 主键
+     * @return 一个布尔值，为真表示更新成功，否则更新失败
      * @throws SQLException
      */
     public static boolean update(Object obj, Connection conn,String primaryKey) throws SQLException {
@@ -147,7 +205,7 @@ public class DBTool {
 
         // 构建更新语句
         StringBuilder sql = new StringBuilder("UPDATE ").append(tableName).append(" SET ");
-        StringBuilder whereClause = new StringBuilder(" WHERE id = ?"); // 字段名为 "id"
+        StringBuilder whereClause = new StringBuilder(" WHERE id = ?");
         PreparedStatement pstmt = null;
 
         try{
@@ -199,6 +257,146 @@ public class DBTool {
         }
 
         return flag;
+    }
+
+    /**
+     * 反射优化数据更新，传入表对应的JAVABean对象，根据对象动的主键和对应的主键值更新对应的表中所有的数据
+     * @param obj  JAVABean 对象
+     * @param conn 数据库连接对象
+     * @param primaryKey 主键
+     * @param primaryKey 主键值
+     * @return 一个布尔值，为真表示更新成功，否则更新失败
+     * @throws SQLException
+     */
+    public static boolean update(Object obj, Connection conn, String primaryKey, Object primaryKeyValue) throws SQLException {
+        if (obj == null || conn == null || primaryKey == null || primaryKeyValue == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+
+        Class<?> clazz = obj.getClass();
+        String tableName = clazz.getSimpleName();
+        StringBuilder sql = new StringBuilder("UPDATE " + tableName + " SET ");
+        Field[] fields = clazz.getDeclaredFields();
+
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            field.setAccessible(true); // 设置私有属性也可以访问
+            sql.append(field.getName()).append(" = ?");
+            if (i < fields.length - 1) {
+                sql.append(", ");
+            }
+        }
+
+        sql.append(" WHERE ").append(primaryKey).append(" = ?");
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            int index = 1;
+            for (Field field : fields) {
+                field.setAccessible(true);
+                try {
+                    pstmt.setObject(index++, field.get(obj));
+                } catch (IllegalAccessException e) {
+                    throw new SQLException("更新时无法访问字段值", e);
+                }
+            }
+            pstmt.setObject(index, primaryKeyValue);
+
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+
+    /**
+     * 反射优化数据查询，传入表对应的JAVABean对象，根据对象主属性以及其值获取对象
+     * @param clazz  JAVABean 对象
+     * @param conn 数据库连接对象
+     * @param key 主属性
+     * @param value 对应的值
+     * @return JAVABean 对应的JAVABean 对象
+     * @throws SQLException
+     */
+
+    public static <T> T findByKey(Class<T> clazz, Connection conn, String key, Object value) throws SQLException {
+        // 构建SQL查询语句
+        String tableName = clazz.getSimpleName().toLowerCase(); // 假设表名与类名相同，且为小写
+        String sql = "SELECT * FROM " + tableName + " WHERE " + key + " = ?";
+
+        // 使用PreparedStatement进行查询
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setObject(1, value); // 设置查询条件
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // 创建一个新的JavaBean实例
+                    T bean = clazz.getDeclaredConstructor().newInstance();
+                    // 获取JavaBean的所有字段
+                    Field[] fields = clazz.getDeclaredFields();
+                    for (Field field : fields) {
+                        // 设置字段可访问
+                        field.setAccessible(true);
+                        // 设置字段值
+                        field.set(bean, rs.getObject(field.getName()));
+                    }
+                    return bean;
+                }
+            }
+        } catch (Exception e) {
+            // 处理反射异常
+            throw new RuntimeException("Error occurred during reflection", e);
+        }
+        return null; // 如果没有找到结果，返回null
+    }
+
+    /**
+     * 反射优化数据查询，传入表对应的JAVABean对象，根据对象主属性以及其值获取对象列表
+     * @param clazz  JAVABean 对象
+     * @param conn 数据库连接对象
+     * @param key 主属性
+     * @param value 对应的值
+     * @return list<JAVABean></> 对应的JAVABean 对象
+     * @throws SQLException
+     */
+    public static <T> List<T> getDataList(Class<T> clazz, Connection conn, String key, Object value) throws SQLException {
+        List<T> resultList = new ArrayList<>();
+
+        // 获取表名，简单起见将类名首字母小写作为表名
+        String tableName = clazz.getSimpleName().toLowerCase();
+
+        // 构建查询语句
+        StringBuilder sql = new StringBuilder("SELECT * FROM ").append(tableName).append(" WHERE ").append(key).append(" =?");
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            // 设置查询条件参数
+            pstmt.setObject(1, value);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // 获取JavaBean类的所有字段（属性）
+                Field[] fields = clazz.getDeclaredFields();
+                while (rs.next()) {
+                    // 通过反射创建JavaBean实例
+                    T instance = clazz.getDeclaredConstructor().newInstance();
+                    for (Field field : fields) {
+                        // 设置字段可访问（因为可能是私有字段）
+                        field.setAccessible(true);
+                        // 获取字段对应的数据库列名（这里简单假设字段名和列名一致，实际可能需映射）
+                        String columnName = field.getName();
+                        // 根据ResultSet结果集设置JavaBean实例的属性值
+                        Object columnValue = rs.getObject(columnName);
+                        field.set(instance, columnValue);
+                    }
+                    resultList.add(instance);
+                }
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return resultList;
     }
 
 }
